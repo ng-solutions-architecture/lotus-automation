@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-
 GO_VERSION=1.19
 
 install_software_deps() {
