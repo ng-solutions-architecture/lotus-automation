@@ -20,6 +20,7 @@ build_lotus() {
   cd ${DIR}
 
   clone_lotus
+  cd ${DIR}/lotus
   set_build_flags
 
   make clean all
