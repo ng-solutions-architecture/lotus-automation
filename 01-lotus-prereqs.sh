@@ -1,14 +1,26 @@
 #!/usr/bin/bash
 
-#Install software dependecies for Ubuntu
-sudo apt update
-sudo apt install mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev git-all wget -y && sudo apt upgrade -y
+GO_VERSION=1.19
 
-#Install Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source "$HOME/.cargo/env"
+install_software_deps() {
+  sudo apt update
+  sudo apt install mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev git-all wget -y && sudo apt upgrade -y
+}
 
-#Install Go
-wget -c https://golang.org/dl/go1.19.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
-export PATH=$PATH:/usr/local/go/bin
-echo 'PATH' >> ~/.bashrc && source ~/.bashrc
+install_rust() {
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  source "$HOME/.cargo/env"
+}
+
+install_go() {
+  VERSION=$1
+
+  wget -c https://golang.org/dl/go${VERSION}.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
+  export PATH=$PATH:/usr/local/go/bin
+  echo 'PATH' >> ~/.bashrc && source ~/.bashrc
+}
+
+# Install prerequisites
+install_software_deps
+install_rust
+install_go ${GO_VERSION}
