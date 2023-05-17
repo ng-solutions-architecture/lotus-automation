@@ -13,7 +13,7 @@ import_snapshot() {
   DIR=$1
 
   echo "Importing chain snapshot"
-  nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst > ${DIR}/lotus.log 2>&1 &
+  nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${DIR}/lotus.log 2>&1 &
 
 }
 
