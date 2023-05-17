@@ -2,7 +2,7 @@
 
 install_software_deps() {
   sudo apt update
-  sudo apt install mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev git-all wget -y && sudo apt upgrade -y
+  sudo apt install mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev git-all wget aria2 -y && sudo apt upgrade -y
 }
 
 install_rust() {
