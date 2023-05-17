@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-GO_VERSION="1.19"
+GO_VERSION="1.20"
 INSTALL_DIR="/opt"
 SECTOR_SIZE="32GiB"
