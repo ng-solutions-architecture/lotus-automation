@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+
 GO_VERSION=1.19
 
 install_software_deps() {
@@ -19,6 +20,7 @@ install_go() {
   export PATH=$PATH:/usr/local/go/bin
   echo 'PATH' >> ~/.bashrc && source ~/.bashrc
 }
+
 
 # Install prerequisites
 install_software_deps

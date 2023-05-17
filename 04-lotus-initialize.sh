@@ -6,7 +6,7 @@ owner=$(lotus wallet new bls)
 worker=$(lotus wallet new bls)
 
 echo "owner=$owner" > /opt/wallet_addresses.txt
-echo "worker=$worker" >> /opt/wallet_addresses
+echo "worker=$worker" >> /opt/wallet_addresses.txt
 
 echo "Transfer funds to $owner and $worker "
 while true; do
