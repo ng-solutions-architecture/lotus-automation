@@ -5,5 +5,3 @@ aria2c -x5 https://snapshots.mainnet.filops.net/minimal/latest.zst -d /opt -o la
 
 echo "Importing chain snapshot"
 nohup lotus daemon --import-snapshot /opt/latest-lotus-snapshot.zst > /opt/lotus.log 2>&1 &
-
-echo test
