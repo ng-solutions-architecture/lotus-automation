@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./variables.sh
+source ./variables
 
 download_snapshot() {
   DIR=$1
