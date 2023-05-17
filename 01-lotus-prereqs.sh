@@ -11,11 +11,13 @@ install_rust() {
 }
 
 install_go() {
-  wget -c https://golang.org/dl/go1.19.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
+  VERSION=$1
+
+  wget -c https://golang.org/dl/go${VERSION}.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
   export PATH=$PATH:/usr/local/go/bin
   echo 'PATH' >> ~/.bashrc && source ~/.bashrc
 }
 
 install_software_deps
 install_rust
-install_go
+install_go 1.19
