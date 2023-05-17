@@ -1,6 +1,6 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-GO_VERSION=1.19
+source ./variables.sh
 
 install_software_deps() {
   sudo apt update && sudo apt upgrade -y
