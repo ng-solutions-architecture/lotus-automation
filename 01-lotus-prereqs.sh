@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./variables.sh
+source ./variables
 
 install_software_deps() {
   sudo apt update && sudo apt upgrade -y

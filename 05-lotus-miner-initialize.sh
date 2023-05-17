@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-source ./variables.sh
+source ./variables
 source ${INSTALL_DIR}/wallet_addresses
 
 initialize_sp() {

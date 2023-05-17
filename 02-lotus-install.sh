@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-source ./variables.sh
+source ./variables
 
 clone_lotus() {
   git clone https://github.com/filecoin-project/lotus.git
