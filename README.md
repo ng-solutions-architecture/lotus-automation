@@ -23,3 +23,8 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
 - Import latest chain snapshot
 - Initialize lotus-daemon and create wallets
 - Initialize lotus-miner
+
+## Assumptions
+
+- Everything runs under a single user
+- All components are installed on a single machine
