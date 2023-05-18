@@ -15,6 +15,8 @@ import_snapshot() {
 
   echo "Importing chain snapshot"
   nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${LOG}/lotus.log 2>&1 &
+  sleep 30m
+  lotus sync wait
 
 }
 
