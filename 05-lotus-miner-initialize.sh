@@ -19,6 +19,7 @@ start_miner() {
   echo "Starting lotus-miner"
   sleep ${WAIT_TIME_SEC}
   lotus-miner info
+
   echo "Miner running"
 }
 
