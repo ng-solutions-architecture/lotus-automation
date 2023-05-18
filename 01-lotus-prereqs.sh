@@ -19,8 +19,17 @@ install_go() {
   echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc
 }
 
+create_dirs() {
+  INSTALL=$1
+  LOGS=$2
+
+  mkdir -p ${INSTALL}
+  mkdir -p ${LOGS}
+}
+
 
 # Install prerequisites
+create_dirs ${INSTALL_DIR} ${LOG_DIR}
 install_software_deps
 install_rust
 install_go ${GO_VERSION}

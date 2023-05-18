@@ -23,4 +23,4 @@ start_miner() {
 }
 
 initialize_sp ${SECTOR_SIZE}
-start_miner ${INSTALL_DIR}
+start_miner ${LOG_DIR}

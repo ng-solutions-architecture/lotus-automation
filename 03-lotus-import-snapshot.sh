@@ -11,11 +11,12 @@ download_snapshot() {
 
 import_snapshot() {
   DIR=$1
+  LOG=$2
 
   echo "Importing chain snapshot"
-  nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${DIR}/lotus.log 2>&1 &
+  nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${LOG}/lotus.log 2>&1 &
 
 }
 
 download_snapshot ${INSTALL_DIR}
-import_snapshot ${INSTALL_DIR}
+import_snapshot ${INSTALL_DIR} ${LOG_DIR}
