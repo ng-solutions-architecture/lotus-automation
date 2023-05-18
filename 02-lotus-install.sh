@@ -32,5 +32,8 @@ install_lotus() {
 }
 
 
+echo "Building lotus."
 build_lotus ${INSTALL_DIR}
+
+echo "Installing lotus."
 install_lotus
