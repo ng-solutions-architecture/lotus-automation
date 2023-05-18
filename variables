@@ -6,6 +6,8 @@ BOOST_VERSION=
 
 INSTALL_DIR="/opt"
 SECTOR_SIZE="32GiB"
+LOG_DIR="/var/log/lotus"
+
 
 FIL_PROOFS_PARAMETER_CACHE=/mnt/nvme/parameter_cache
 FIL_PROOFS_PARENT_CACHE=/mnt/nvme/parent_cache
