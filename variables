@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+LOTUS_VERSION=
 GO_VERSION="1.20"
+BOOST_VERSION=
+
 INSTALL_DIR="/opt"
 SECTOR_SIZE="32GiB"
+
+FIL_PROOFS_PARAMETER_CACHE=/mnt/nvme/parameter_cache
+FIL_PROOFS_PARENT_CACHE=/mnt/nvme/parent_cache
+
+LOTUS_BACKUP_BASE_PATH=/mnt/backup
+
+LOTUS_MINER_PATH=/opt/lotus-miner
+LOTUS_PATH=/opt/lotus
