@@ -33,9 +33,17 @@ create_dirs() {
   mkdir -p ${LOGS}
 }
 
+set_limits() {
+  sudo echo "* soft nofile 256000" >> /etc/security/limits.conf
+  sudo echo "* hard nofile 512000" >> /etc/security/limits.conf
+  sudo echo "fs.nr_open=128000000" >> /etc/sysctl.conf
+  sudo echo "fs.file-max=128000000" >> /etc/sysctl.conf
+  sudo sysctl -p
+}
 
 # Install prerequisites
 create_dirs ${INSTALL_DIR} ${LOG_DIR}
 install_software_deps
 install_rust
 install_go ${GO_VERSION}
+set_limits

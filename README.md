@@ -1,10 +1,10 @@
 # lotus-automation
 
 ## Contributors
-- Bob Dubois
-- Anjor Kanekar
-- Angelo Schalley
-- Orjan Roren
+- Bob Dubois: @bobdubois
+- Anjor Kanekar: @anjor
+- Angelo Schalley: @Angelo-gh3990
+- Orjan Roren: @rjan90
 
 
 ## What this automation is planning to do
