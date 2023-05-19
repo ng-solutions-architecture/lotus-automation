@@ -24,7 +24,11 @@ build_lotus() {
   cd ${DIR}/lotus
   set_build_flags
 
-  make clean all
+  if [ $USE_CALIBNET == "y"];
+    then make clean calibnet
+    else 
+      make clean all
+  fi
 }
 
 install_lotus() {

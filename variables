@@ -1,18 +1,29 @@
 #!/usr/bin/env bash
 
+# Check which version of Lotus matches with which version of Boost and Go
 LOTUS_VERSION="v1.22.1"
 GO_VERSION="1.18.10"
 BOOST_VERSION="v1.6.4"
 
+# Build Lotus for Calibration testnet: y / n
+USE_CALIBNET="y"
+
+# Choose the installation directory for Lotus
 INSTALL_DIR="/opt"
+
+# Choose the sector size for your miner: 32GiB / 64GiB
 SECTOR_SIZE="32GiB"
+
+# Choose location for the Lotus log file(s)
 LOG_DIR="/var/log/lotus"
 
-
+# Choose location for the miner proof cache. This needs to be fast storage, ideally NVMe, and requires 350GiB.
 FIL_PROOFS_PARAMETER_CACHE=/opt/cache/parameter_cache
 FIL_PROOFS_PARENT_CACHE=/opt/cache/parent_cache
 
+# Choose location where Lotus backups will be stored
 LOTUS_BACKUP_BASE_PATH=/mnt/backup
 
+# Choose location for lotus-miner and lotus. The chain is stored under LOTUS_PATH. This requires fast storage (SSD or NVMe)
 LOTUS_MINER_PATH=/opt/lotus-miner
 LOTUS_PATH=/opt/lotus
