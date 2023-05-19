@@ -27,4 +27,16 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
 ## Assumptions
 
 - Everything runs under a single user
-- All components are installed on a single machine
+- All components are (currently) installed on a single machine
+
+## Getting started
+
+- edit the "variables" file to match your environment
+- make installer script executable
+```shell 
+    chmod +x ./install.sh
+```
+- run the installer script
+```shell
+./install.sh
+```
