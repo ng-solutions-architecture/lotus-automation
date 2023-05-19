@@ -11,9 +11,9 @@ initialize_sp() {
   echo "export FIL_PROOFS_PARENT_CACHE=$PARENT_CACHE" >> $HOME/.bashrc
 
   export LOTUS_SEALING_AGGREGATECOMMITS=false
-  echo "LOTUS_SEALING_AGGREGATECOMMITS=false" >> $HOME/.bashrc
+  echo "export LOTUS_SEALING_AGGREGATECOMMITS=false" >> $HOME/.bashrc
   export LOTUS_SEALING_BATCHPRECOMMITS=false
-  echo "LOTUS_SEALING_BATCHPRECOMMITS=false" >> $HOME/.bashrc
+  echo "export LOTUS_SEALING_BATCHPRECOMMITS=false" >> $HOME/.bashrc
 
   lotus-miner init --no-local-storage --owner=$owner --worker=$worker --sector-size=${SIZE}
 }
