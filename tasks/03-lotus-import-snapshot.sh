@@ -21,7 +21,7 @@ import_snapshot() {
   export LOTUS_PATH=$LOTUS_DIR
   echo "export LOTUS_PATH=$LOTUS_DIR" >> $HOME/.bashrc
   nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${LOG}/lotus.log 2>&1 &
-  sleep 10m
+  sleep 15m
   lotus sync wait
 
 }
