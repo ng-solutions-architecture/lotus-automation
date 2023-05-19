@@ -38,5 +38,5 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
 ```
 - run the installer script
 ```shell
-./install.sh
+    ./install.sh
 ```
