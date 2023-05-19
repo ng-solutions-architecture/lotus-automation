@@ -4,9 +4,13 @@ source ./variables
 
 download_snapshot() {
   DIR=$1
-  
+  rm ${DIR}/latest-lotus-snapshot.zst*
   echo "Downloading latest chain snapshot"
-  aria2c -x5 https://snapshots.mainnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
+
+  if [ $USE_CALIBNET == "yes" ];
+  then aria2c -x5 https://snapshots.calibrationnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
+    else aria2c -x5 https://snapshots.mainnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
+  fi
 }
 
 import_snapshot() {
@@ -14,8 +18,10 @@ import_snapshot() {
   LOG=$2
 
   echo "Importing chain snapshot"
+  export LOTUS_PATH=$LOTUS_DIR
+  echo "export LOTUS_PATH=$LOTUS_DIR" >> $HOME/.bashrc
   nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${LOG}/lotus.log 2>&1 &
-  sleep 30m
+  sleep 10m
   lotus sync wait
 
 }

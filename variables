@@ -10,7 +10,7 @@ BOOST_VERSION="v1.6.4"
 USE_CALIBNET="y"
 
 # Choose the installation directory for Lotus
-INSTALL_DIR="/opt"
+INSTALL_DIR="$HOME"
 
 # Choose the sector size for your miner: 32GiB / 64GiB
 SECTOR_SIZE="32GiB"
@@ -26,5 +26,5 @@ FIL_PROOFS_PARENT_CACHE=/opt/cache/parent_cache
 LOTUS_BACKUP_BASE_PATH=/mnt/backup
 
 # Choose location for lotus-miner and lotus. The chain is stored under LOTUS_PATH. This requires fast storage (SSD or NVMe)
-LOTUS_MINER_PATH=/opt/lotus-miner
-LOTUS_PATH=/opt/lotus
+LOTUS_MINER_DIR=/opt/lotus-miner
+LOTUS_DIR=/opt/lotus
