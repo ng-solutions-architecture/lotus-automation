@@ -15,7 +15,7 @@ initialize_sp() {
   export LOTUS_SEALING_BATCHPRECOMMITS=false
   echo "LOTUS_SEALING_BATCHPRECOMMITS=false" >> $HOME/.bashrc
 
-  lotus-miner init --owner=$owner --worker=$worker --sector-size=${SIZE}
+  lotus-miner init --no-local-storage --owner=$owner --worker=$worker --sector-size=${SIZE}
 }
 
 start_miner() {
