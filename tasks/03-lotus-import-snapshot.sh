@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 source ./variables
+source $HOME/.bashrc
 
 download_snapshot() {
   DIR=$1
   rm ${DIR}/latest-lotus-snapshot.zst*
   echo "Downloading latest chain snapshot"
 
-  if [ $USE_CALIBNET == "yes" ];
+  if [ $USE_CALIBNET == "y" ];
   then aria2c -x5 https://snapshots.calibrationnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
     else aria2c -x5 https://snapshots.mainnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
   fi

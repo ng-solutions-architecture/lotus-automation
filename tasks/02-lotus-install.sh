@@ -25,9 +25,9 @@ build_lotus() {
   set_build_flags
 
   if [ $USE_CALIBNET == "y" ];
-    then bash -c make clean calibnet
+    then make clean calibnet
     else 
-      bash -c make clean all
+      make clean all
   fi
 }
 
