@@ -31,8 +31,8 @@ create_dirs() {
   USER=$(whoami)
 
   mkdir -p ${INSTALL}
-  bash -c sudo mkdir -p ${LOGS}
-  bash -c sudo chown $USER ${LOGS}
+  sudo bash -c "mkdir -p ${LOGS}"
+  sudo bash -c "chown $USER ${LOGS}"
 }
 
 set_limits() {
