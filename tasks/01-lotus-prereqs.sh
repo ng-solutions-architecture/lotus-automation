@@ -28,9 +28,11 @@ install_go() {
 create_dirs() {
   INSTALL=$1
   LOGS=$2
+  USER=$(whoami)
 
   mkdir -p ${INSTALL}
-  mkdir -p ${LOGS}
+  bash -c sudo mkdir -p ${LOGS}
+  bash -c sudo chown $USER ${LOGS}
 }
 
 set_limits() {

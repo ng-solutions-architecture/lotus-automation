@@ -17,7 +17,6 @@ set_build_flags() {
 }
 
 build_lotus() {
-  echo $PATH
   DIR=$1
   cd ${DIR}
 
@@ -26,14 +25,14 @@ build_lotus() {
   set_build_flags
 
   if [ $USE_CALIBNET == "y" ];
-    then make clean calibnet
+    then bash -c make clean calibnet
     else 
-      make clean all
+      bash -c make clean all
   fi
 }
 
 install_lotus() {
-  sudo make install
+  sudo bash -c make install
 }
 
 
