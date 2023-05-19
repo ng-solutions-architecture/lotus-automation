@@ -5,7 +5,7 @@ source ~/.bashrc
 
 clone_lotus() {
   git clone https://github.com/filecoin-project/lotus.git
-  git checkout releases
+  git checkout $LOTUS_VERSION
 }
 
 set_build_flags() {

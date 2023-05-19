@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-LOTUS_VERSION=
-GO_VERSION="1.20"
-BOOST_VERSION=
+LOTUS_VERSION="v1.22.1"
+GO_VERSION="1.18.10"
+BOOST_VERSION="v1.6.4"
 
 INSTALL_DIR="/opt"
 SECTOR_SIZE="32GiB"
 LOG_DIR="/var/log/lotus"
 
 
-FIL_PROOFS_PARAMETER_CACHE=/mnt/nvme/parameter_cache
-FIL_PROOFS_PARENT_CACHE=/mnt/nvme/parent_cache
+FIL_PROOFS_PARAMETER_CACHE=/opt/cache/parameter_cache
+FIL_PROOFS_PARENT_CACHE=/opt/cache/parent_cache
 
 LOTUS_BACKUP_BASE_PATH=/mnt/backup
 
