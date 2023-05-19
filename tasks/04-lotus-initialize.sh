@@ -4,13 +4,15 @@ source ./variables
 
 create_wallet() {
   DIR=$1
+  
+  lotus sync wait
 
   echo "Creating owner and worker wallets"
   owner=$(lotus wallet new bls)
   worker=$(lotus wallet new bls)
   
-  echo "owner=$owner" > ${DIR}/wallet_addresses.txt
-  echo "worker=$worker" >> ${DIR}/wallet_addresses.txt
+  echo "owner=$owner" > ${DIR}/wallet_addresses
+  echo "worker=$worker" >> ${DIR}/wallet_addresses
 
 }
 
