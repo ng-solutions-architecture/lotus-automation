@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 
-run_step() {
-  STEP=$1
+run_task() {
+  TASK=$1
 
-  chmod +x ./$STEP
-  ./$STEP
+  chmod +x ./tasks/$TASK
+  ./tasks/$TASK
 }
 
 echo "Installing lotus prerequisites..."
-run_step 01-lotus-prereqs.sh
+run_task 01-lotus-prereqs.sh
 
 echo "Installing lotus..."
-run_step 02-lotus-install.sh
+run_task 02-lotus-install.sh
 
 echo "Importing lotus snapshot..."
-run_step 03-lotus-import-snapshot.sh
+run_task 03-lotus-import-snapshot.sh
 
 echo "Initializing lotus..."
-run_step 04-lotus-initialize.sh
+run_task 04-lotus-initialize.sh
 
 echo "Initializing lotus miner..."
-run_step 05-lotus-miner-initialize.sh
+run_task 05-lotus-miner-initialize.sh
 
 echo "Done!"
