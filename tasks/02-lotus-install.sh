@@ -32,6 +32,8 @@ build_lotus() {
 }
 
 install_lotus() {
+  DIR=$1
+  cd ${DIR}/lotus
   sudo bash -c make install
 }
 
@@ -40,4 +42,4 @@ echo "Building lotus."
 build_lotus ${INSTALL_DIR}
 
 echo "Installing lotus."
-install_lotus
+install_lotus ${INSTALL_DIR}
