@@ -18,11 +18,15 @@ import_snapshot() {
   DIR=$1
   LOG=$2
 
-  echo "Importing chain snapshot"
+  echo "Importing chain snapshot. This takes some time (~30min) for mainnet."
   export LOTUS_PATH=$LOTUS_DIR
   echo "export LOTUS_PATH=$LOTUS_DIR" >> $HOME/.bashrc
   nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${LOG}/lotus.log 2>&1 &
-  sleep 15m
+  
+  if [ $USE_CALIBNET == "y" ];
+  then sleep 10m
+    else sleep 30m
+  fi
 }
 
 download_snapshot ${INSTALL_DIR}
