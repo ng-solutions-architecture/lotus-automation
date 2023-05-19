@@ -5,7 +5,7 @@ LOTUS_VERSION="v1.22.1"
 GO_VERSION="1.18.10"
 BOOST_VERSION="v1.6.4"
 
-# Build Lotus for Calibration testnet: y / n
+# Build Lotus for Calibration testnet instead of mainnet: y / n
 USE_CALIBNET="y"
 
 # Choose the installation directory for Lotus
