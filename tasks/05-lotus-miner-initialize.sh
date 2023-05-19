@@ -13,7 +13,7 @@ initialize_sp() {
   export LOTUS_SEALING_AGGREGATECOMMITS=false
   echo "LOTUS_SEALING_AGGREGATECOMMITS=false" >> $HOME/.bashrc
   export LOTUS_SEALING_BATCHPRECOMMITS=false
-  echo "LOTUS_SEALING_BATCHPRECOMMITS=false" >> >> $HOME/.bashrc
+  echo "LOTUS_SEALING_BATCHPRECOMMITS=false" >> $HOME/.bashrc
 
   lotus-miner init --owner=$owner --worker=$worker --sector-size=${SIZE}
 }
