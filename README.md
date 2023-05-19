@@ -1,5 +1,7 @@
 # lotus-automation
 
+!!! DEPRECATED !!!
+USE https://github.com/ng-solutions-architecture/lotus-automation INSTEAD
 ## Contributors
 - Bob Dubois: @bobdubois
 - Anjor Kanekar: @anjor
