@@ -19,7 +19,7 @@ SECTOR_SIZE="32GiB"
 LOG_DIR="/var/log/lotus"
 
 # Choose location for the miner proof cache. This needs to be fast storage, ideally NVMe, and requires 350GiB.
-PARAM_CACHE=/opt/cache/parameter_cache
+PARAM_CACHE=/opt/cache/param_cache
 PARENT_CACHE=/opt/cache/parent_cache
 
 # Choose location where Lotus backups will be stored
