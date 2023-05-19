@@ -17,6 +17,7 @@ set_build_flags() {
 }
 
 build_lotus() {
+  echo $PATH
   DIR=$1
   cd ${DIR}
 
