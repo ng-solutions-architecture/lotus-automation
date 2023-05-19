@@ -11,13 +11,16 @@ initialize_sp() {
   echo "export FIL_PROOFS_PARENT_CACHE=$PARENT_CACHE" >> $HOME/.bashrc
 
   export LOTUS_SEALING_AGGREGATECOMMITS=false
+  echo "LOTUS_SEALING_AGGREGATECOMMITS=false" >> $HOME/.bashrc
   export LOTUS_SEALING_BATCHPRECOMMITS=false
+  echo "LOTUS_SEALING_BATCHPRECOMMITS=false" >> >> $HOME/.bashrc
+
   lotus-miner init --owner=$owner --worker=$worker --sector-size=${SIZE}
 }
 
 start_miner() {
   DIR=$1
-  WAIT_TIME_SEC=45
+  WAIT_TIME_SEC=120
 
   nohup lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
   echo "Starting lotus-miner"
