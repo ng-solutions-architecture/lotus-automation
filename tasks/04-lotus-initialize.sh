@@ -86,6 +86,8 @@ lotus_daemon_restart() {
   lotus daemon stop
   sleep 15
   nohup lotus daemon >> ${LOG}/lotus.log 2>&1 &
+  sleep 15
+  lotus sync wait
 }
 
 check_libp2p() {
@@ -93,11 +95,12 @@ check_libp2p() {
   PORT=$2
 
   while true; do   
-      if [ $(lotus net reachability | grep Public) ]; then
+      if [[ $(lotus net reachability | grep "Public") ]]; then
           echo "Lotus daemon is visible on the public network. Continuing..."
           break
       else
-          echo "Lotus daemon is not visible via port ${PORT} on ${IP}. Check your firewall settings."
+          echo "Lotus daemon is not visible via port ${PORT} on ${IP}. Check your firewall settings.\n
+          The installation will continue once your lotus daemon is reachable."
       fi
       sleep 1m
   done
