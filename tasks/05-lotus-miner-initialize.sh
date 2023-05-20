@@ -30,8 +30,8 @@ configure_miner() {
     mv ${DIR}/config.toml ${DIR}/config.toml.backup
 
     printf "
-[API] \n
-  ListenAddress = \"/ip4/0.0.0.0/tcp/${PORT}/http\" \n
+[API]\n
+  ListenAddress = \"/ip4/0.0.0.0/tcp/${PORT}/http\"\n
   RemoteListenAddress = \"${IP}:${PORT}\"\n
   Timeout = "30s"\n\n
 
@@ -42,7 +42,7 @@ configure_miner() {
   AllowCommit = true\n
   AllowUnseal = true\n
   AllowReplicaUpdate = true\n
-  AllowProveReplicaUpdate2 = true\n\n
+  AllowProveReplicaUpdate2 = true\n
   " > ${DIR}/config.toml
 }
 
