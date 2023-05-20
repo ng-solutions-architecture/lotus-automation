@@ -18,7 +18,7 @@ import_snapshot() {
   DIR=$1
   LOG=$2
 
-  echo "Importing chain snapshot. This takes some time (~30min) for mainnet."
+  echo "Importing chain snapshot. This takes ~30min for mainnet."
   echo "Current time is $(date +%T)"
 
   export LOTUS_PATH=$LOTUS_DIR

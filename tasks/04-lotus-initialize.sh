@@ -46,6 +46,25 @@ wait_for_funds() {
   done
 }
 
+create_api_token() {
+    PORT=$2
+    IP=$1
+    TOKEN=$(lotus auth api-info --perm admin)
+    DAEMON_API="$TOKEN:/ip4/$IP/tcp/$PORT/http"
+    echo $DAEMON_API > ${DIR}/daemon_api
+}
+
+create_daemon_config() {
+    PORT=$2
+    IP=$1
+    mv $LOTUS_DIR/config.toml $LOTUS_DIR/config.toml.backup
+    echo "
+    [API]\n
+      ListenAddress = "/ip4/$IP/tcp/$PORT/http"" > $LOTUS_DIR/config.toml
+}
+
 create_wallet ${INSTALL_DIR}
 transfer_funds
 wait_for_funds
+create_api_token ${DAEMON_IP} ${DAEMON_PORT}
+create_daemon_config ${DAEMON_IP} ${DAEMON_PORT}

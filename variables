@@ -28,3 +28,8 @@ LOTUS_BACKUP_BASE_PATH=/mnt/backup
 # Choose location for lotus-miner and lotus. The chain is stored under LOTUS_PATH. This requires fast storage (SSD or NVMe)
 LOTUS_MINER_DIR=$HOME/.lotus-miner
 LOTUS_DIR=$HOME/.lotus
+
+
+# Choose IP address and TCP port on which the lotus-daemon API will listen
+DAEMON_IP=10.10.40.40
+DAEMON_PORT=9876
