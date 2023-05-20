@@ -57,14 +57,25 @@ create_api_token() {
 create_daemon_config() {
     PORT=$2
     IP=$1
+    PUB_IP=$3
+    P2P_PORT=$4
     
     mv $LOTUS_DIR/config.toml $LOTUS_DIR/config.toml.backup
 
     printf "
 [API] \n
-  ListenAddress = \"/ip4/$IP/tcp/$PORT/http\" \n
-  RemoteListenAddress = \"$IP:$PORT\"
-  
+  ListenAddress = \"/ip4/0.0.0.0/tcp/$PORT/http\" \n
+  RemoteListenAddress = \"$IP:$PORT\"\n\n
+
+[Libp2p]\n
+  ListenAddresses = [\"/ip4/0.0.0.0/tcp/${P2P_PORT}\"]\n
+  AnnounceAddresses = [\"/ip4/${PUB_IP}/tcp/${P2P_PORT}\"]\n
+  NoAnnounceAddresses = []\n
+  DisableNatPortMap = false\n
+  ConnMgrLow = 100\n
+  ConnMgrHigh = 500\n
+  ConnMgrGrace = "30s"\n\n
+
 [Chainstore] \n
   # type: bool \n
   # env var: LOTUS_CHAINSTORE_ENABLESPLITSTORE \n
@@ -79,4 +90,4 @@ create_wallet ${INSTALL_DIR}
 transfer_funds
 wait_for_funds
 create_api_token ${DAEMON_IP} ${DAEMON_PORT}
-create_daemon_config ${DAEMON_IP} ${DAEMON_PORT}
+create_daemon_config ${DAEMON_IP} ${DAEMON_PORT} ${PUBLIC_IP} ${P2P_PORT}
