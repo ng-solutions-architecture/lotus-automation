@@ -51,8 +51,6 @@ configure_miner() {
   " > ${DIR}/config.toml
 }
 
-}
-
 start_miner() {
   DIR=$1
   WAIT_TIME_SEC=120
@@ -74,6 +72,7 @@ announce_miner() {
 
 add_miner_storage() {
   STORAGE=$1
+  sudo chown $(whoami) ${SEALED_STORAGE}
   lotus-miner storage attach --init --store ${STORAGE}
   lotus-miner storage list
 }
