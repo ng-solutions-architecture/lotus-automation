@@ -93,7 +93,7 @@ check_libp2p() {
   PORT=$2
 
   while true; do   
-      if [ "$(echo "lotus net reachability | grep Public")" ]; then
+      if [ $(lotus net reachability | grep Public) ]; then
           echo "Lotus daemon is visible on the public network. Continuing..."
           break
       else
