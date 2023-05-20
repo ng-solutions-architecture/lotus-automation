@@ -63,8 +63,8 @@ create_daemon_config() {
     mv $LOTUS_DIR/config.toml $LOTUS_DIR/config.toml.backup
 
     printf "
-[API] \n
-  ListenAddress = \"/ip4/0.0.0.0/tcp/$PORT/http\" \n
+[API]\n
+  ListenAddress = \"/ip4/0.0.0.0/tcp/$PORT/http\"\n
   RemoteListenAddress = \"$IP:$PORT\"\n\n
 
 [Libp2p]\n
@@ -76,10 +76,10 @@ create_daemon_config() {
   ConnMgrHigh = 500\n
   ConnMgrGrace = "30s"\n\n
 
-[Chainstore] \n
-  # type: bool \n
-  # env var: LOTUS_CHAINSTORE_ENABLESPLITSTORE \n
-  EnableSplitstore = true \n
+[Chainstore]\n
+  # type: bool\n
+  # env var: LOTUS_CHAINSTORE_ENABLESPLITSTORE\n
+  EnableSplitstore = true\n
   " > $LOTUS_DIR/config.toml
 
     echo "export FULLNODE_API_INFO="$DAEMON_API"" >> $HOME/.bashrc
