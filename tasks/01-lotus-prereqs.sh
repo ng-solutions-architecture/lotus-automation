@@ -22,7 +22,8 @@ install_go() {
   echo "Installing GO, Version=${VERSION}"
   sudo bash -c "rm -rf /usr/local/go"
   wget -c https://golang.org/dl/go${VERSION}.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
-  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc
+  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+  source ~/.bashrc
 }
 
 create_dirs() {
