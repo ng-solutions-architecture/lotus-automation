@@ -42,7 +42,7 @@ configure_miner() {
   AllowCommit = true\n
   AllowUnseal = true\n
   AllowReplicaUpdate = true\n
-  AllowProveReplicaUpdate2 = true\n
+  AllowProveReplicaUpdate2 = true\n\n
   " > ${DIR}/config.toml
 }
 
