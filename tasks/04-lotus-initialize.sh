@@ -78,7 +78,7 @@ create_daemon_config() {
   # type: bool\n
   # env var: LOTUS_CHAINSTORE_ENABLESPLITSTORE\n
   EnableSplitstore = true\n
-  " > $LOTUS_DIR/config.toml\n
+  " > $LOTUS_DIR/config.toml
 }
 
 lotus_daemon_restart() {
