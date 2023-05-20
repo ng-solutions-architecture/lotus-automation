@@ -5,6 +5,7 @@
 LOTUS_VERSION="releases"
 GO_VERSION="1.20.4"
 BOOST_VERSION="v1.6.4"
+NODEJS_VERSION="v18.16.0"
 
 # Build Lotus for Calibration testnet instead of mainnet: y / n
 USE_CALIBNET="y"
