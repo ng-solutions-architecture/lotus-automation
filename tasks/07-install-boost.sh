@@ -23,8 +23,6 @@ set_boost_vars() {
   echo "export BOOST_BITSWAP_REP=${BOOST_BITSWAP}" >> $HOME/.bashrc
   export BOOST_PATH=${BOOST_DIR}
   echo "export BOOST_PATH=${BOOST_DIR}" >> $HOME/.bashrc
-  export APISEALER=${MINER_API_INFO}
-  export APISECTORINDEX=${MINER_API_INFO}
   }
 
 send_funds_to_boost() {

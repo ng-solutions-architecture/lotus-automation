@@ -4,11 +4,11 @@
 #LOTUS_VERSION="v1.22.1"
 LOTUS_VERSION="releases"
 GO_VERSION="1.20.4"
-BOOST_VERSION="v1.6.4"
+BOOST_VERSION="v1.7.2"
 NODEJS_VERSION="v18.16.0"
 
 # Build Lotus for Calibration testnet instead of mainnet: y / n
-USE_CALIBNET="y"
+USE_CALIBNET="n"
 
 # Choose the installation directory for Lotus
 INSTALL_DIR="$HOME"
@@ -31,7 +31,7 @@ LOTUS_MINER_DIR=$HOME/.lotusminer
 LOTUS_DIR=$HOME/.lotus
 
 
-# Choose IP address and TCP port on which the lotus-daemon API will listen
+# Lotus daemon configuration
 DAEMON_IP=10.10.40.40
 DAEMON_PORT=9876
 PUBLIC_IP=78.21.173.230
