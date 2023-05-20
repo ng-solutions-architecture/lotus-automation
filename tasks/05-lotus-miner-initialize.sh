@@ -48,7 +48,7 @@ configure_miner() {
 
 start_miner() {
   DIR=$1
-  WAIT_TIME_SEC=120
+  WAIT_TIME_SEC=180
 
   nohup lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
   echo "Starting lotus-miner"
