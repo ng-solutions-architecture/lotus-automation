@@ -74,7 +74,7 @@ create_daemon_config() {
   DisableNatPortMap = false\n
   ConnMgrLow = 100\n
   ConnMgrHigh = 500\n
-  ConnMgrGrace = "30s"\n\n
+  ConnMgrGrace = \"30s\"\n\n
 
 [Chainstore]\n
   # type: bool\n
