@@ -31,17 +31,26 @@ send_funds_to_boost() {
   lotus send --from ${OWNER_WALLET} ${PUBLISH_STORAGE_DEALS_WALLET} 0.2
   lotus send --from ${OWNER_WALLET} ${COLLAT_WALLET} 0.2
   echo "Waiting 3 minutes for funds to arrive"
-  sleep 3m
+  sleep 2m
 }
 
 set_boost_control_wallet() {
     lotus-miner actor control set --really-do-it ${PUBLISH_STORAGE_DEALS_WALLET}
 }
 
+install_node() {
+    DIR=$1
+    cd ${DIR}
+    
+    wget https://nodejs.org/dist/${NODEJS_VERSION}/node-${NODEJS_VERSION}-linux-x64.tar.xz
+    sudo tar -C /usr/local --strip-components 1 -xf node-${NODEJS_VERSION}-linux-x64.tar.xz
+    rm node-${NODEJS_VERSION}-linux-x64.tar.xz
+}
+
 build_boost() {
     DIR=$1
-
     cd ${DIR}
+    
     git clone https://github.com/filecoin-project/boost
     cd boost
     git checkout ${BOOST_VERSION}
@@ -59,4 +68,5 @@ create_boost_wallets ${INSTALL_DIR}
 set_boost_vars
 send_funds_to_boost
 set_boost_control_wallet
+install_node ${INSTALL_DIR} 
 build_boost ${INSTALL_DIR}
