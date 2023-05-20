@@ -47,11 +47,9 @@ wait_for_funds() {
 }
 
 create_api_token() {
-    PORT=$2
-    IP=$1
     TOKEN=$(lotus auth api-info --perm admin)
-    DAEMON_API="$TOKEN:/ip4/$IP/tcp/$PORT/http"
-    echo $DAEMON_API > ${DIR}/daemon_api
+    echo "export ${TOKEN}" >> $HOME/.bashrc
+    export ${TOKEN}
 }
 
 create_daemon_config() {
@@ -80,10 +78,7 @@ create_daemon_config() {
   # type: bool\n
   # env var: LOTUS_CHAINSTORE_ENABLESPLITSTORE\n
   EnableSplitstore = true\n
-  " > $LOTUS_DIR/config.toml
-
-    echo "export FULLNODE_API_INFO="$DAEMON_API"" >> $HOME/.bashrc
-    export FULLNODE_API_INFO="$DAEMON_API"
+  " > $LOTUS_DIR/config.toml\n
 }
 
 lotus_daemon_restart() {
@@ -111,7 +106,7 @@ check_libp2p() {
 create_wallet ${INSTALL_DIR}
 transfer_funds
 wait_for_funds
-create_api_token ${DAEMON_IP} ${DAEMON_PORT}
+create_api_token ${DAEMON_IP} ${DAEMON_PORT} ${INSTALL_DIR}
 create_daemon_config ${DAEMON_IP} ${DAEMON_PORT} ${PUBLIC_IP} ${P2P_PORT}
 lotus_daemon_restart ${LOG_DIR}
 check_libp2p ${PUBLIC_IP} ${P2P_PORT}
