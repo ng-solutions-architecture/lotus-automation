@@ -26,4 +26,13 @@ read -n 1 -s -r -p "Press any key to continue"
 echo "Initializing lotus miner..."
 run_task 05-lotus-miner-initialize.sh
 
+echo "Configuring lotus miner..."
+run_task 06-configure-miner.sh
+
+echo "Installing Boost..."
+run_task 07-install-boost.sh
+
+echo "Initializing Boost..."
+run_task 08-initialize-boost.sh
+
 echo "Done!"

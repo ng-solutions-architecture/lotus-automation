@@ -40,3 +40,8 @@ P2P_PORT=51620
 MINER_IP=10.10.40.40
 MINER_PORT=8765
 SEALED_STORAGE=/mnt
+
+# Boost configuration
+BOOST_CLIENT=$HOME/.boost_client
+BOOST_BITSWAP=$HOME/.boost_bitswap
+BOOST_DIR=$HOME/.boost

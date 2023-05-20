@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 source ./variables
-source ${INSTALL_DIR}/wallet_addresses
 
 initialize_sp() {
   SIZE=$1
@@ -65,15 +64,7 @@ announce_miner() {
   lotus-miner actor set-addrs /ip4/${PUB_IP}/tcp/${P2P_PORT}
 }
 
-add_miner_storage() {
-  STORAGE=$1
-  sudo chown $(whoami) ${STORAGE}
-  lotus-miner storage attach --init --store ${STORAGE}
-  lotus-miner storage list
-}
-
 initialize_sp ${SECTOR_SIZE}
 configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_DIR}
 start_miner ${LOG_DIR}
 announce_miner ${PUBLIC_IP} ${P2P_PORT}
-add_miner_storage ${SEALED_STORAGE}

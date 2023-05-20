@@ -11,8 +11,10 @@ create_wallet() {
   owner=$(lotus wallet new bls)
   worker=$(lotus wallet new bls)
   
-  echo "owner=$owner" > ${DIR}/wallet_addresses
-  echo "worker=$worker" >> ${DIR}/wallet_addresses
+  export OWNER_WALLET=${owner}
+  echo "echo OWNER_WALLET=${owner}" >> $HOME/.bashrc
+  export WORKER_WALLET=${WORKER_WALLET}
+  echo "export WORKER_WALLET=${WORKER_WALLET}" >> $HOME/.bashrc
 
 }
 
