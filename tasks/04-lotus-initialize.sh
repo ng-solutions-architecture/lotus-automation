@@ -57,10 +57,21 @@ create_api_token() {
 create_daemon_config() {
     PORT=$2
     IP=$1
+    
     mv $LOTUS_DIR/config.toml $LOTUS_DIR/config.toml.backup
-    echo "
-    [API]\n
-      ListenAddress = "/ip4/$IP/tcp/$PORT/http"" > $LOTUS_DIR/config.toml
+
+    printf "
+[API] \n
+  ListenAddress = \"/ip4/$IP/tcp/$PORT/http\" \n
+  
+[Chainstore] \n
+  # type: bool \n
+  # env var: LOTUS_CHAINSTORE_ENABLESPLITSTORE \n
+  EnableSplitstore = true \n
+  " > $LOTUS_DIR/config.toml
+
+    echo "export FULLNODE_API_INFO="$DAEMON_API"" >> $HOME/.bashrc
+    export FULLNODE_API_INFO="$DAEMON_API"
 }
 
 create_wallet ${INSTALL_DIR}
