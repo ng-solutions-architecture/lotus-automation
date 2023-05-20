@@ -33,7 +33,7 @@ configure_miner() {
 [API]\n
   ListenAddress = \"/ip4/0.0.0.0/tcp/${PORT}/http\"\n
   RemoteListenAddress = \"${IP}:${PORT}\"\n
-  Timeout = "30s"\n\n
+  Timeout = \"30s\"\n\n
 
 [Storage]\n
   AllowAddPiece = false\n
