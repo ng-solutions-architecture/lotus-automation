@@ -63,6 +63,7 @@ create_daemon_config() {
     printf "
 [API] \n
   ListenAddress = \"/ip4/$IP/tcp/$PORT/http\" \n
+  RemoteListenAddress = \"$IP:$PORT\"
   
 [Chainstore] \n
   # type: bool \n
