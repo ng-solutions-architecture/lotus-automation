@@ -26,19 +26,14 @@ configure_miner() {
     IP=$1
     PORT=$2
     DIR=$3
-    PUB_IP=$4
-    P2P_PORT=$5
     
     mv ${DIR}/config.toml ${DIR}/config.toml.backup
 
     printf "
 [API] \n
-  ListenAddress = \"/ip4/${IP}/tcp/${PORT}/http\" \n
-  RemoteListenAddress = \"${IP}:${PORT}\"\n\n
-
-[Libp2p]\n
-  ListenAddresses = [\"/ip4/0.0.0.0/tcp/${P2P_PORT}\"]\n
-  AnnounceAddresses = [\"/ip4/${PUB_IP}/tcp/${P2P_PORT}\"]\n\n
+  ListenAddress = \"/ip4/0.0.0.0/tcp/${PORT}/http\" \n
+  RemoteListenAddress = \"${IP}:${PORT}\"\n
+  Timeout = "30s"\n\n
 
 [Storage]\n
   AllowAddPiece = false\n
@@ -72,13 +67,13 @@ announce_miner() {
 
 add_miner_storage() {
   STORAGE=$1
-  sudo chown $(whoami) ${SEALED_STORAGE}
+  sudo chown $(whoami) ${STORAGE}
   lotus-miner storage attach --init --store ${STORAGE}
   lotus-miner storage list
 }
 
 initialize_sp ${SECTOR_SIZE}
-configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_DIR} ${MINER_PUBLIC_IP} ${MINER_P2P_PORT}
+configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_DIR}
 start_miner ${LOG_DIR}
-announce_miner ${MINER_PUBLIC_IP} ${MINER_P2P_PORT}
+announce_miner ${PUBLIC_IP} ${P2P_PORT}
 add_miner_storage ${SEALED_STORAGE}
