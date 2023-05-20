@@ -36,7 +36,7 @@ wait_for_funds() {
   while true; do
       current_balance=$(lotus wallet list | awk '{print $2}')
       if [ "${current_balance}" != "${prev_balance}" ]; then
-          echo "The test FIL has arrived. Continuing.."
+          echo "The FIL has arrived. Continuing.."
           prev_balance=${current_balance}
           break
       else
@@ -86,8 +86,32 @@ create_daemon_config() {
     export FULLNODE_API_INFO="$DAEMON_API"
 }
 
+lotus_daemon_restart() {
+  LOG=$1
+  lotus daemon stop
+  sleep 15
+  nohup lotus daemon >> ${LOG}/lotus.log 2>&1 &
+}
+
+check_libp2p() {
+  IP=$1
+  PORT=$2
+
+  while true; do   
+      if [ "$(echo "lotus net reachability | grep Public")" ]; then
+          echo "Lotus daemon is visible on the public network. Continuing..."
+          break
+      else
+          echo "Lotus daemon is not visible via port ${PORT} on ${IP}. Check your firewall settings."
+      fi
+      sleep 1m
+  done
+}
+
 create_wallet ${INSTALL_DIR}
 transfer_funds
 wait_for_funds
 create_api_token ${DAEMON_IP} ${DAEMON_PORT}
 create_daemon_config ${DAEMON_IP} ${DAEMON_PORT} ${PUBLIC_IP} ${P2P_PORT}
+lotus_daemon_restart ${LOG_DIR}
+check_libp2p ${PUBLIC_IP} ${P2P_PORT}
