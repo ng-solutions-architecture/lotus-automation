@@ -78,7 +78,7 @@ create_daemon_config() {
   # type: bool\n
   # env var: LOTUS_CHAINSTORE_ENABLESPLITSTORE\n
   EnableSplitstore = true\n
-  " > $LOTUS_DIR/config.toml\n
+  " > $LOTUS_DIR/config.toml
 }
 
 lotus_daemon_restart() {
@@ -93,7 +93,7 @@ check_libp2p() {
   PORT=$2
 
   while true; do   
-      if [ "$(echo "lotus net reachability | grep Public")" ]; then
+      if [ "$(lotus net reachability | grep Public)" ]; then
           echo "Lotus daemon is visible on the public network. Continuing..."
           break
       else
