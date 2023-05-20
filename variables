@@ -31,5 +31,10 @@ LOTUS_DIR=$HOME/.lotus
 
 
 # Choose IP address and TCP port on which the lotus-daemon API will listen
-DAEMON_IP=10.10.40.40
-DAEMON_PORT=9876
+DAEMON_IP=
+DAEMON_PORT=
+DAEMON_PUBLIC_IP=
+
+# Choose TCP port on which the lotus-miner API will listen
+MINER_IP=
+MINER_PORT=
