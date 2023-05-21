@@ -57,6 +57,9 @@ build_boost() {
         then make clean calibnet
     else 
       make clean build
+      make booster-http
+      sudo cp booster-http /usr/local/bin/
+
   fi
 
     sudo make install
