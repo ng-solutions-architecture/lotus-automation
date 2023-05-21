@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 source ./variables
+source $HOME/.bashrc
 
 initialize_sp() {
   SIZE=$1
