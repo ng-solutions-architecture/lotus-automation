@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# sed -i -e '/ListenAddress =/ s/= .*/= "\/ip4\/0.0.0.0\/tcp\/7654\/http"/' .boost/config.toml
-# sed -i -e '/RemoteListenAddress =/ s/= .*/= "\/ip4\/10.10.40.40\/tcp\/7654\/http"/' .boost/config.toml
-# sed -i -e '/ListenAddresses =/ s/= .*/= \["\/ip4\/0.0.0.0\/tcp\/7654"\]/' config.toml
-# sed -i -e '/AnnounceAddresses =/ s/= .*/= \["\/ip4\/78.21.173.230\/tcp\/51621"\]/' .boost/config.toml
-# sed -i -e '/NoAnnounceAddresses =/ s/= .*/= \[\]/' .boost/config.toml
+source ./variables
+source $HOME/.bashrc
+
+sed -i -e '/ListenAddress =/ s/= .*/= "\/ip4\/0.0.0.0\/tcp\/${BOOST_PORT}\/http"/' ${BOOST_DIR}/config.toml
+sed -i -e '/RemoteListenAddress =/ s/= .*/= "\/ip4\/${BOOST_IP}\/tcp\/${BOOST_PORT}\/http"/' ${BOOST_DIR}/config.toml
+sed -i -e '/ListenAddresses =/ s/= .*/= \["\/ip4\/0.0.0.0\/tcp\/${BOOST_PORT}"\]/' ${BOOST_DIR}/config.toml
+sed -i -e '/AnnounceAddresses =/ s/= .*/= \["\/ip4\/${BOOST_PUB_IP}\/tcp\/${BOOST_P2P_PORT}"\]/' ${BOOST_DIR}/config.toml
+sed -i -e '/NoAnnounceAddresses =/ s/= .*/= \[\]/' ${BOOST_DIR}/config.toml
