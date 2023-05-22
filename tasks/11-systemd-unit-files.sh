@@ -30,9 +30,9 @@ LimitNOFILE=8192:10240\n\n
 
 [Install]\n
 WantedBy=multi-user.target\n
-" | sudo tee /etc/systemd/lotus-daemon.service > /dev/null
+" | sudo tee /etc/systemd/system/lotus-daemon.service > /dev/null
 
-    sudo chmod 0644 /etc/systemd/lotus-daemon.service
+    sudo chmod 0644 /etc/systemd/system/lotus-daemon.service
 }
 
 install_systemd_miner () {
@@ -51,9 +51,9 @@ ExecStart=/usr/local/bin/lotus-miner run\n\n
 
 [Install]\n
 WantedBy=multi-user.target\n
-" | sudo tee /etc/systemd/lotus-miner.service > /dev/null
+" | sudo tee /etc/systemd/system/lotus-miner.service > /dev/null
 
-    sudo chmod 0644 /etc/systemd/lotus-miner.service
+    sudo chmod 0644 /etc/systemd/system/lotus-miner.service
 }
 
 install_systemd_boostd () {
@@ -72,9 +72,9 @@ ExecStart=/usr/local/bin/boostd --vv run\n\n
 
 [Install]\n
 WantedBy=multi-user.target\n
-" | sudo tee /etc/systemd/boostd.service > /dev/null
+" | sudo tee /etc/systemd/system/boostd.service > /dev/null
 
-    sudo chmod 0644 /etc/systemd/boostd.service
+    sudo chmod 0644 /etc/systemd/system/boostd.service
 }
 
 install_systemd_booster () {
@@ -93,9 +93,9 @@ ExecStart=/usr/local/bin/booster run --api-boost=$BOOST_API_INFO --api-fullnode=
 
 [Install]\n
 WantedBy=multi-user.target\n
-" | sudo tee /etc/systemd/booster-http.service > /dev/null
+" | sudo tee /etc/systemd/system/booster-http.service > /dev/null
 
-    sudo chmod 0644 /etc/systemd/booster-http.service
+    sudo chmod 0644 /etc/systemd/system/booster-http.service
 }
 
 reload_systemd () {
