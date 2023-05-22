@@ -20,6 +20,7 @@ initialize_boost() {
 run_boost() {
     DIR=$1
     boostd --vv run > ${DIR}/boost.log 2>&1 &
+    sleep 10s
 }
 
 announce_boost() {
