@@ -64,11 +64,10 @@ After=lotus-miner.service\n
 Requires=network-online.target\n\n
 
 [Service]\n
-Environment=GOLOG_FILE=\"/var/log/lotus/boostd.log\"\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
-ExecStart=/usr/local/bin/boostd --vv run\n\n
+ExecStart=/usr/local/bin/boostd --vv run > /var/log/lotus/boostd.log 2>&1\n\n
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -85,11 +84,10 @@ After=boostd.service\n
 Requires=network-online.target\n\n
 
 [Service]\n
-Environment=GOLOG_FILE=\"/var/log/lotus/booster-http.log\"\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
-ExecStart=/usr/local/bin/booster-http run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO\n\n
+ExecStart=/usr/local/bin/booster-http run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO > /var/log/lotus/booster-http.log 2>&1\n\n
 
 [Install]\n
 WantedBy=multi-user.target\n
