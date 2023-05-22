@@ -4,7 +4,7 @@ source ./variables
 source $HOME/.bashrc
 
 create_env_file () {
-    cat $HOME/.bashrc | grep export | awk '{split($0,a," "); print a[2]}' > sudo tee /etc/lotus_env > /dev/null
+    cat $HOME/.bashrc | grep export | awk '{split($0,a," "); print a[2]}' | sudo tee /etc/lotus_env > /dev/null
 }
 
 install_systemd_daemon () {
@@ -89,7 +89,7 @@ Environment=GOLOG_FILE=\"/var/log/lotus/booster-http.log\"\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
-ExecStart=/usr/local/bin/booster run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO\n\n
+ExecStart=/usr/local/bin/booster-http run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO\n\n
 
 [Install]\n
 WantedBy=multi-user.target\n
