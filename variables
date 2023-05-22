@@ -53,6 +53,7 @@ BOOST_P2P_PORT=
 
 # Enable booster-http. This will also configure a reverse proxy for security. (y/n)
 USE_BOOSTER_HTTP="y"
+BOOSTER_HTTP_DNS=
 PROXY_PORT=
 ADMIN=admin
 PASSW=
