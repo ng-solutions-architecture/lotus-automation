@@ -48,7 +48,7 @@ run_task 10-configure-reverse-proxy.sh
 read -n 1 -s -r -p "Press any key to continue"
 
 echo "Configuring systemd..."
-run_task 1-systemd-unit-files.sh
+run_task 11-systemd-unit-files.sh
 read -n 1 -s -r -p "Press any key to continue"
 
 echo "Done!"
