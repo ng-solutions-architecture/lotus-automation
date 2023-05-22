@@ -50,3 +50,9 @@ BOOST_IP=
 BOOST_PORT=
 BOOST_PUB_IP=
 BOOST_P2P_PORT=
+
+# Enable booster-http. This will also configure a reverse proxy for security. (y/n)
+USE_BOOSTER_HTTP="y"
+PROXY_PORT=
+ADMIN=admin
+PASSW=
