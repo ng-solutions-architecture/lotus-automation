@@ -32,32 +32,32 @@ LOTUS_DIR=/opt/.lotus
 
 
 # Lotus daemon configuration
-DAEMON_IP=10.10.40.40
-DAEMON_PORT=9876
-PUBLIC_IP=78.21.173.230
-P2P_PORT=51620
+DAEMON_IP=
+DAEMON_PORT=
+PUBLIC_IP=
+P2P_PORT=
 
 # Lotus-miner configuration
-MINER_IP=10.10.40.40
-MINER_PORT=8765
+MINER_IP=
+MINER_PORT=
 SEALED_STORAGE=/mnt
 
 # Boost configuration
 BOOST_CLIENT=$HOME/.boost_client
 BOOST_BITSWAP=$HOME/.boost_bitswap
 BOOST_DIR=$HOME/.boost
-BOOST_IP=10.10.40.40
-BOOST_PORT=7654
-BOOST_PUB_IP=78.21.173.230
-BOOST_P2P_PORT=51621
+BOOST_IP=
+BOOST_PORT=
+BOOST_PUB_IP=
+BOOST_P2P_PORT=
 
 # Enable booster-http. This will also configure a reverse proxy for security. (y/n)
 USE_BOOSTER_HTTP="y"
-BOOSTER_HTTP_DNS=koekoeksnest.ydns.eu
-HTTP_PORT=7777
-PROXY_PORT=8443
-HTTP_USER=admin
-HTTP_PASSW=admin
+BOOSTER_HTTP_DNS=
+HTTP_PORT=
+PROXY_PORT=
+HTTP_USER=
+HTTP_PASSW=
 # If you want to use a specific certificate, provide the absolute path to the certificate and private key files. These are typically stored under /etc/ssl/certs and /etc/ssl/private.
 CERT_FILE=
 CERT_KEY=

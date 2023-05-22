@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ./variables
+source $HOME/.bashrc
 
 add_miner_storage() {
   STORAGE=$1

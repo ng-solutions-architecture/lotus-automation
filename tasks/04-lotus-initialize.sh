@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 source ./variables
+source $HOME/.bashrc
 
 create_wallet() {
   DIR=$1
