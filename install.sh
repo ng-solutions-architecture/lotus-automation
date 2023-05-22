@@ -43,4 +43,8 @@ echo "Configuring Boost..."
 run_task 09-configure-boost.sh
 read -n 1 -s -r -p "Press any key to continue"
 
+echo "Configuring NGINX..."
+run_task 10-configure-reverse-proxy.sh
+read -n 1 -s -r -p "Press any key to continue"
+
 echo "Done!"
