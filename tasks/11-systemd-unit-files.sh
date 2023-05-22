@@ -4,7 +4,7 @@ source ./variables
 source $HOME/.bashrc
 
 create_env_file () {
-    cat $HOME/.bashrc | grep export | awk '{split($0,a," "); print a[2]}' > /etc/lotus_env
+    cat $HOME/.bashrc | grep export | awk '{split($0,a," "); print a[2]}' > sudo tee /etc/lotus_env > /dev/null
 }
 
 install_systemd_daemon () {
@@ -39,7 +39,7 @@ install_systemd_miner () {
     printf "
 [Unit]\n
 Description=Lotus Miner\n
-After=network-online.target\n
+After=lotus-daemon.service\n
 Requires=network-online.target\n\n
 
 [Service]\n
@@ -60,7 +60,7 @@ install_systemd_boostd () {
     printf "
 [Unit]\n
 Description=Boostd\n
-After=network-online.target\n
+After=lotus-miner.service\n
 Requires=network-online.target\n\n
 
 [Service]\n
@@ -81,7 +81,7 @@ install_systemd_booster () {
     printf "
 [Unit]\n
 Description=Booster-HTTP\n
-After=network-online.target\n
+After=boostd.service\n
 Requires=network-online.target\n\n
 
 [Service]\n
@@ -102,6 +102,7 @@ reload_systemd () {
     sudo systemctl daemon-reload
 }
 
+create_env_file
 install_systemd_daemon
 install_systemd_miner
 install_systemd_boostd
