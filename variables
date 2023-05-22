@@ -50,3 +50,14 @@ BOOST_IP=10.10.40.40
 BOOST_PORT=7654
 BOOST_PUB_IP=78.21.173.230
 BOOST_P2P_PORT=51621
+
+# Enable booster-http. This will also configure a reverse proxy for security. (y/n)
+USE_BOOSTER_HTTP="y"
+BOOSTER_HTTP_DNS=koekoeksnest.ydns.eu
+HTTP_PORT=7777
+PROXY_PORT=8443
+HTTP_USER=admin
+HTTP_PASSW=admin
+# If you want to use a specific certificate, provide the absolute path to the certificate and private key files. These are typically stored under /etc/ssl/certs and /etc/ssl/private.
+CERT_FILE=
+CERT_KEY=

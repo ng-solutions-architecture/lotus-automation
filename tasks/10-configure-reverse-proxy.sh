@@ -9,23 +9,25 @@ install_nginx () {
 }
 
 set_booster_http_credentials () {
-    mkdir /etc/nginx/ipfs-gateway.conf.d
-    htpasswd -b -c /etc/nginx/ipfs-gateway.conf.d/.htpasswd ${HTTP_USER} ${HTTP_PASSW}
+    sudo mkdir /etc/nginx/ipfs-gateway.conf.d
+    sudo htpasswd -b -c /etc/nginx/ipfs-gateway.conf.d/.htpasswd ${HTTP_USER} ${HTTP_PASSW}
 }
 
 set_rate_limiting () {
-    printf "
-limit_req_zone $binary_remote_addr zone=client_ip_10rs:1m rate=1r/s;" | sudo tee /etc/nginx/ipfs-gateway.conf.d/ipfs-gateway.conf 2>&1 &;
+    printf '
+limit_req_zone $binary_remote_addr zone=client_ip_10rs:1m rate=1r/s;\n
+' | sudo tee /etc/nginx/ipfs-gateway.conf.d/ipfs-gateway.conf 2>&1 &
+
 }
 
 configure_reverse_proxy () {
     if [[ ${CERT_FILE} && ${CERT_KEY} ]];
     then printf "
-\# ipfs gateway config\n
+# ipfs gateway config\n
 include /etc/nginx/ipfs-gateway.conf.d/ipfs-gateway.conf;\n
 server {\n
-        listen 8443 ssl;\n
-        listen [::]:8443 ssl;\n\n
+        listen ${PROXY_PORT} ssl;\n
+        listen [::]:${PROXY_PORT} ssl;\n\n
 
         server_name ${BOOSTER_HTTP_DNS};\n\n
 
@@ -36,20 +38,20 @@ server {\n
         ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;\n\n
 
         location /ipfs/ {\n
-                proxy_pass http://127.0.0.1:7777;\n
+                proxy_pass http://127.0.0.1:${HTTP_PORT};\n
                 auth_basic \"Restricted Server\";\n
                 auth_basic_user_file /etc/nginx/ipfs-gateway.conf.d/.htpasswd;\n                
         }\n
 }\n
-    " | sudo tee /etc/nginx/sites-enabled/ipfs 2>&1 &;
+    " | sudo tee /etc/nginx/sites-enabled/ipfs > /dev/null
     else 
         sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ipfs.key -out /etc/ssl/certs/ipfs.crt
         printf "
-\# ipfs gateway config\n
+# ipfs gateway config\n
 include /etc/nginx/ipfs-gateway.conf.d/ipfs-gateway.conf;\n
 server {\n
-        listen 8443 ssl;\n
-        listen [::]:8443 ssl;\n\n
+        listen ${PROXY_PORT} ssl;\n
+        listen [::]:${PROXY_PORT} ssl;\n\n
 
         server_name ${BOOSTER_HTTP_DNS};\n\n
 
@@ -60,12 +62,12 @@ server {\n
         ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;\n\n
 
         location /ipfs/ {\n
-                proxy_pass http://127.0.0.1:7777;\n
+                proxy_pass http://127.0.0.1:${HTTP_PORT};\n
                 auth_basic \"Restricted Server\";\n
                 auth_basic_user_file /etc/nginx/ipfs-gateway.conf.d/.htpasswd;\n  
         }\n
 }\n
-    " | sudo tee /etc/nginx/sites-enabled/ipfs 2>&1 &;
+    " | sudo tee /etc/nginx/sites-enabled/ipfs > /dev/null
     fi
 }
 
@@ -83,6 +85,7 @@ set_booster_http_retrievals () {
 if [ ${USE_BOOSTER_HTTP} == "y" ]; then
     install_nginx
     set_booster_http_credentials
+    set_rate_limiting
     configure_reverse_proxy
     start_nginx
     set_booster_http_retrievals
