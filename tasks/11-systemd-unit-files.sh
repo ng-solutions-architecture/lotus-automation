@@ -4,7 +4,7 @@ source ./variables
 source $HOME/.bashrc
 
 create_env_file () {
-    cat $HOME/.bashrc | grep export | awk '{split($0,a," "); print a[2]}' > $HOME/.lotus_env
+    cat $HOME/.bashrc | grep export | awk '{split($0,a," "); print a[2]}' > /etc/lotus_env
 }
 
 install_systemd_daemon () {
@@ -16,7 +16,7 @@ Requires=network-online.target\n\n
 
 [Service]\n
 Environment=GOLOG_FILE=\"/var/log/lotus/lotus.log\"\n
-EnvironmentFile=$HOME/.lotus_env\n
+EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
 ExecStart=/usr/local/bin/lotus daemon\n
@@ -38,13 +38,13 @@ WantedBy=multi-user.target\n
 install_systemd_miner () {
     printf "
 [Unit]\n
-Description=Lotus Mïner\n
+Description=Lotus Miner\n
 After=network-online.target\n
 Requires=network-online.target\n\n
 
 [Service]\n
 Environment=GOLOG_FILE=\"/var/log/lotus/lotusminer.log\"\n
-EnvironmentFile=$HOME/.lotus_env\n
+EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
 ExecStart=/usr/local/bin/lotus-miner run\n\n
@@ -65,7 +65,7 @@ Requires=network-online.target\n\n
 
 [Service]\n
 Environment=GOLOG_FILE=\"/var/log/lotus/boostd.log\"\n
-EnvironmentFile=$HOME/.lotus_env\n
+EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
 ExecStart=/usr/local/bin/boostd --vv run\n\n
@@ -86,7 +86,7 @@ Requires=network-online.target\n\n
 
 [Service]\n
 Environment=GOLOG_FILE=\"/var/log/lotus/booster-http.log\"\n
-EnvironmentFile=$HOME/.lotus_env\n
+EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
 ExecStart=/usr/local/bin/booster run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO\n\n
@@ -109,3 +109,5 @@ install_systemd_boostd
 if [ ${USE_BOOSTER_HTTP} == "y" ]; then
     install_systemd_booster
 fi
+
+reload_systemd
