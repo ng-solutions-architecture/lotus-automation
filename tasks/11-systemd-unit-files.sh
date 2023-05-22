@@ -47,6 +47,7 @@ Environment=GOLOG_FILE=\"/var/log/lotus/lotusminer.log\"\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
+ExecStartPre=/bin/sleep 30\n
 ExecStart=/usr/local/bin/lotus-miner run\n\n
 
 [Install]\n
@@ -67,6 +68,7 @@ Requires=network-online.target\n\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
+ExecStartPre=/bin/sleep 180\n
 ExecStart=/usr/local/bin/boostd --vv run > /var/log/lotus/boostd.log 2>&1\n\n
 
 [Install]\n
