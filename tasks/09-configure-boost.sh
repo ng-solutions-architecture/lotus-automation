@@ -20,13 +20,15 @@ restart_boost () {
     DIR=$1
 
     killall boostd
-    boostd --vv run >> $1/boost.log 2>&1 &
+    boostd --vv run >> ${DIR}/boost.log 2>&1 &
+    sleep 10
 }
 
 start_booster_http() {
-    booster-http run --api-boost=${BOOST_API_INFO} --api-fullnode=${FULLNODE_API_INFO} --api-storage=${MINER_API_INFO}
+    DIR=$1
+    booster-http run --api-boost=${BOOST_API_INFO} --api-fullnode=${FULLNODE_API_INFO} --api-storage=${MINER_API_INFO} >> ${DIR}/booster-http.log 2>&1 &
 }
 
 set_boost_config
 restart_boost ${LOG_DIR}
-start_booster_http
+start_booster_http ${LOG_DIR}
