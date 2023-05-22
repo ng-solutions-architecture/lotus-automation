@@ -54,6 +54,10 @@ BOOST_P2P_PORT=
 # Enable booster-http. This will also configure a reverse proxy for security. (y/n)
 USE_BOOSTER_HTTP="y"
 BOOSTER_HTTP_DNS=
+HTTP_PORT=
 PROXY_PORT=
-ADMIN=admin
-PASSW=
+HTTP_USER=
+HTTP_PASSW=
+# If you want to use a specific certificate, provide the absolute path to the certificate and private key files. These are typically stored under /etc/ssl/certs and /etc/ssl/private.
+CERT_FILE=
+CERT_KEY=
