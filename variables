@@ -89,8 +89,10 @@ CERT_KEY=
 # These variables are only required in case you will install components on separate machines (like lotus-worker).
 # Provide the FULLNODE and MINER API info from the already installed lotus-daemon and lotus-miner instances:
 
-FULLNODE_API_INFO=
-MINER_API_INFO=
+#Uncomment and set the below API_INFO variables:
+#FULLNODE_API_INFO=
+#MINER_API_INFO=
+
 FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1 # when GPU is available
 FIL_PROOFS_USE_GPU_TREE_BUILDER=1   # when GPU is available
 LOTUS_WORKER_NAME= # if not set, defaults to hostname

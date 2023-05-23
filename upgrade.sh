@@ -9,7 +9,7 @@ run_task() {
 
 press_key() {
   read -n 1 -s -r -p "Press any key to continue
-  "
+"
 }
 
 echo "Checking Lotus version..."
