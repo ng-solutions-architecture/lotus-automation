@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 
-# Check which version of Lotus matches with which version of Boost and Go
-#LOTUS_VERSION="v1.22.1"
-LOTUS_VERSION="releases"
+# Check which version of Lotus matches with which version of Boost and Go: https://boost.filecoin.io/getting-started
+LOTUS_VERSION="v1.23.2"
+#LOTUS_VERSION="releases"
 GO_VERSION="1.20.4"
 BOOST_VERSION="v1.7.2"
 NODEJS_VERSION="v18.16.0"
 
 # Build Lotus for Calibration testnet instead of mainnet: y / n
+# if "y", use the Faucet to give your wallets test FIL: https://faucet.calibration.fildev.network/
 USE_CALIBNET="n"
 
-# Choose the installation directory for Lotus
+# Choose the temporary installation directory for Lotus
 INSTALL_DIR="$HOME"
 
 # Choose the sector size for your miner: 32GiB / 64GiB
@@ -24,39 +25,55 @@ PARAM_CACHE=/opt/cache/param_cache
 PARENT_CACHE=/opt/cache/parent_cache
 
 # Choose location where Lotus backups will be stored
-LOTUS_BACKUP_BASE_PATH=/mnt/backup
+LOTUS_BACKUP_BASE_PATH=/opt/backup
 
 # Choose location for lotus-miner and lotus. The chain is stored under LOTUS_PATH. This requires fast storage (SSD or NVMe)
-LOTUS_MINER_DIR=$HOME/.lotusminer
+LOTUS_MINER_DIR=/opt/.lotusminer
 LOTUS_DIR=/opt/.lotus
 
 
 # Lotus daemon configuration
+# Internal IP for the daemon API
 DAEMON_IP=
+# Port on which the daemon API will run
 DAEMON_PORT=
+# Public IP for the daemon LibP2P. This is required!
 PUBLIC_IP=
+# Port on the public IP for LibP2P to run.
 P2P_PORT=
 
 # Lotus-miner configuration
+# Internal IP for the miner API
 MINER_IP=
+# Port on which the miner API will run
 MINER_PORT=
-SEALED_STORAGE=/mnt
+# Location for the long-term sealed sectors
+SEALED_STORAGE=/mnt/storage
 
 # Boost configuration
 BOOST_CLIENT=$HOME/.boost_client
 BOOST_BITSWAP=$HOME/.boost_bitswap
 BOOST_DIR=$HOME/.boost
+# Internal IP for the boostd API
 BOOST_IP=
+# Port on which the boostd API will run
 BOOST_PORT=
+# Public IP for the boostd LibP2P. This is required!
 BOOST_PUB_IP=
+# Port on the public IP for LibP2P to run (choose another port than the daemon LibP2P!)
 BOOST_P2P_PORT=
 
 # Enable booster-http. This will also configure a reverse proxy for security. (y/n)
 USE_BOOSTER_HTTP="y"
+# Public DNS name on which to run booster-http
 BOOSTER_HTTP_DNS=
+# Internal HTTP port for booster-http
 HTTP_PORT=
+# External HTTPS port for booster-http
 PROXY_PORT=
+# User to authenticate on booster-http
 HTTP_USER=
+# Password to authenticate on booster-http
 HTTP_PASSW=
 # If you want to use a specific certificate, provide the absolute path to the certificate and private key files. These are typically stored under /etc/ssl/certs and /etc/ssl/private.
 CERT_FILE=
