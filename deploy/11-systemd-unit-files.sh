@@ -74,7 +74,7 @@ Requires=network-online.target\n\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
-ExecStart=/usr/local/bin/boostd --vv run\n\n
+ExecStart=/usr/local/bin/boostd run\n\n
 StandardOutput=append:$LOG_DIR/boostd.log
 StandardError=append:$LOG_DIR/boostd.log
 
