@@ -3,8 +3,8 @@
 run_task() {
   TASK=$1
 
-  chmod +x ./tasks/$TASK
-  ./tasks/$TASK
+  chmod +x ./deploy/$TASK
+  ./deploy/$TASK
 }
 
 echo "Installing lotus prerequisites..."
