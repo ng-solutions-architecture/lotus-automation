@@ -28,7 +28,7 @@ start_booster_http() {
     DIR=$1
 
     if [ ${USE_BOOSTER_HTTP} == "y" ]; 
-    then booster-http run --api-boost=${BOOST_API_INFO} --api-fullnode=${FULLNODE_API_INFO} --api-storage=${MINER_API_INFO} >> ${DIR}/booster-http.log 2>&1 &
+    then booster-http run --api-boost=${BOOST_API_INFO} --api-fullnode=${FULLNODE_API_INFO} --api-storage=${MINER_API_INFO} --port=${HTTP_PORT}>> ${DIR}/booster-http.log 2>&1 &
     else echo "Booster-HTTP is not started in this configuration."
     fi
 }
