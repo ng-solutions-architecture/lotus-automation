@@ -7,7 +7,7 @@ check_lotus_daemon_version () {
   if [[ "${INSTALLED_VERSION}" == "${LOTUS_VERSION}" ]]; then
     echo "The desired lotus version ${LOTUS_VERSION} is already installed."
     else
-        echo "Lotus daemon will be upgraded to ${LOTUS_VERSION}"
+        echo "Lotus will be upgraded to ${LOTUS_VERSION}"
     fi
 }
 
