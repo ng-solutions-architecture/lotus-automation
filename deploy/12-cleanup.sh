@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source $HOME/.bashrc
 source ./variables
 
 cleanup_install_dirs () {

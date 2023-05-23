@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-source ./variables
 source $HOME/.bashrc
+source ./variables
 
 download_snapshot() {
   DIR=$1
