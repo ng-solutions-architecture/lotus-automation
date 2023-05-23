@@ -15,7 +15,7 @@ After=network-online.target\n
 Requires=network-online.target\n\n
 
 [Service]\n
-Environment=GOLOG_FILE=\"$\{LOG_DIR\}/lotus.log\"\n
+Environment=GOLOG_FILE=\"$LOG_DIR/lotus.log\"\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
@@ -28,8 +28,8 @@ MemoryHigh=8G\n
 MemoryMax=10G\n
 LimitNOFILE=8192:10240\n\n
 
-StandardOutput=append:$\{LOG_DIR\}/lotus.log
-StandardError=append:$\{LOG_DIR\}/lotus.log
+StandardOutput=append:$LOG_DIR/lotus.log
+StandardError=append:$LOG_DIR/lotus.log
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -46,15 +46,15 @@ After=lotus-daemon.service\n
 Requires=network-online.target\n\n
 
 [Service]\n
-Environment=GOLOG_FILE=\"$\{LOG_DIR\}/lotusminer.log\"\n
+Environment=GOLOG_FILE=\"$LOG_DIR/lotusminer.log\"\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
 ExecStartPre=/bin/sleep 30\n
 ExecStart=/usr/local/bin/lotus-miner run\n\n
 
-StandardOutput=append:$\{LOG_DIR\}/lotusminer.log
-StandardError=append:$\{LOG_DIR\}/lotusminer.log
+StandardOutput=append:$LOG_DIR/lotusminer.log
+StandardError=append:$LOG_DIR/lotusminer.log
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -75,8 +75,8 @@ EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
 ExecStart=/usr/local/bin/boostd --vv run\n\n
-StandardOutput=append:$\{LOG_DIR\}/boost.log
-StandardError=append:$\{LOG_DIR\}/boost.log
+StandardOutput=append:$LOG_DIR/boostd.log
+StandardError=append:$LOG_DIR\}/boostd.log
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -98,8 +98,8 @@ User=$(whoami)\n
 Group=$(whoami)\n
 ExecStart=/usr/local/bin/booster-http run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO\n\n
 
-StandardOutput=append:$\{LOG_DIR\}/booster-http.log
-StandardError=append:$\{LOG_DIR\}/booster-http.log
+StandardOutput=append:$LOG_DIR/booster-http.log
+StandardError=append:$LOG_DIR/booster-http.log
 
 [Install]\n
 WantedBy=multi-user.target\n
