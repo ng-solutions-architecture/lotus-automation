@@ -13,7 +13,7 @@ install_rust() {
   echo "Installing rust."
 
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  source "$HOME/.cargo/env"
+  bash -c 'source "$HOME/.cargo/env"'
 }
 
 install_go() {
@@ -23,7 +23,7 @@ install_go() {
   sudo bash -c "rm -rf /usr/local/go"
   wget -c https://golang.org/dl/go${VERSION}.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
   echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
-  source ~/.bashrc
+  bash -c 'source ~/.bashrc'
 }
 
 create_dirs() {
