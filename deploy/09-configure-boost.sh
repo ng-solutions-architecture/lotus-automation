@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source $HOME/.bashrc
-source ./variables
+bash -c 'source $HOME/.bashrc'
+bash -c 'source ./variables'
 
 set_boost_config () {
     sed -i -e "/ListenAddress =/ s/= .*/= \"\/ip4\/0.0.0.0\/tcp\/${BOOST_PORT}\/http\"/" ${BOOST_DIR}/config.toml
