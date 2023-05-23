@@ -23,7 +23,8 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
 - Import latest chain snapshot
 - Initialize lotus-daemon and create wallets
 - Initialize lotus-miner
-- Install and configure Boost
+- Install and configure Boostd
+- Install and configure Booster-HTTP, exposed via Nginx reverse proxy
 
 ## Assumptions
 
