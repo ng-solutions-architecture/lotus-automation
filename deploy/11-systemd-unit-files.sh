@@ -76,7 +76,7 @@ User=$(whoami)\n
 Group=$(whoami)\n
 ExecStart=/usr/local/bin/boostd --vv run\n\n
 StandardOutput=append:$LOG_DIR/boostd.log
-StandardError=append:$LOG_DIR\}/boostd.log
+StandardError=append:$LOG_DIR/boostd.log
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -96,7 +96,7 @@ Requires=network-online.target\n\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
-ExecStart=/usr/local/bin/booster-http run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO\n\n
+ExecStart=/usr/local/bin/booster-http run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO --port=$HTTP_PORT\n\n
 
 StandardOutput=append:$LOG_DIR/booster-http.log
 StandardError=append:$LOG_DIR/booster-http.log
