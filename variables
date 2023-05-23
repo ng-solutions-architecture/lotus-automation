@@ -33,9 +33,9 @@ LOTUS_DIR=/opt/.lotus
 
 # NVIDIA GPU parameters
 # Provide the GPU type, for instance "NVIDIA GeForce RTX 3090". Check the command nvidia-smi to see the exact name for your GPU.
-GPU_TYPE="NVIDIA RTX A2000 12GB"
+GPU_TYPE=""
 # Provide the amount of CUDA cores your GPU has
-CUDA_CORES="3328"
+CUDA_CORES=""
 
 
 # Lotus daemon configuration
