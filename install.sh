@@ -51,4 +51,7 @@ echo "Configuring systemd..."
 run_task 11-systemd-unit-files.sh
 read -n 1 -s -r -p "Press any key to continue"
 
+echo "Cleaning up..."
+run_task 12-cleanup.sh
+
 echo "Done!"
