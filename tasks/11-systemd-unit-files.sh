@@ -15,7 +15,7 @@ After=network-online.target\n
 Requires=network-online.target\n\n
 
 [Service]\n
-Environment=GOLOG_FILE=\"/var/log/lotus/lotus.log\"\n
+Environment=GOLOG_FILE=\"$\{LOG_DIR\}/lotus.log\"\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
@@ -27,6 +27,9 @@ MemoryAccounting=true\n
 MemoryHigh=8G\n
 MemoryMax=10G\n
 LimitNOFILE=8192:10240\n\n
+
+StandardOutput=append:$\{LOG_DIR\}/lotus.log
+StandardError=append:$\{LOG_DIR\}/lotus.log
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -43,12 +46,15 @@ After=lotus-daemon.service\n
 Requires=network-online.target\n\n
 
 [Service]\n
-Environment=GOLOG_FILE=\"/var/log/lotus/lotusminer.log\"\n
+Environment=GOLOG_FILE=\"$\{LOG_DIR\}/lotusminer.log\"\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
 ExecStartPre=/bin/sleep 30\n
 ExecStart=/usr/local/bin/lotus-miner run\n\n
+
+StandardOutput=append:$\{LOG_DIR\}/lotusminer.log
+StandardError=append:$\{LOG_DIR\}/lotusminer.log
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -68,7 +74,9 @@ Requires=network-online.target\n\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
-ExecStart=/usr/local/bin/boostd --vv run > /var/log/lotus/boostd.log 2>&1\n\n
+ExecStart=/usr/local/bin/boostd --vv run\n\n
+StandardOutput=append:$\{LOG_DIR\}/boost.log
+StandardError=append:$\{LOG_DIR\}/boost.log
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -88,7 +96,10 @@ Requires=network-online.target\n\n
 EnvironmentFile=/etc/lotus_env\n
 User=$(whoami)\n
 Group=$(whoami)\n
-ExecStart=/usr/local/bin/booster-http run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO > /var/log/lotus/booster-http.log 2>&1\n\n
+ExecStart=/usr/local/bin/booster-http run --api-boost=$BOOST_API_INFO --api-fullnode=$FULLNODE_API_INFO --api-storage=$MINER_API_INFO\n\n
+
+StandardOutput=append:$\{LOG_DIR\}/booster-http.log
+StandardError=append:$\{LOG_DIR\}/booster-http.log
 
 [Install]\n
 WantedBy=multi-user.target\n
@@ -101,6 +112,28 @@ reload_systemd () {
     sudo systemctl daemon-reload
 }
 
+stop_services () {
+    killall booster-http
+    killall boostd
+    lotus-miner stop
+    sleep 5
+    lotus daemon stop
+    sleep 10
+}
+start_services () {
+    sudo systemctl start lotus-daemon
+    sudo systemctl start lotus-miner
+    sleep 30
+    sudo systemctl start boostd
+    sleep 5
+    sudo systemctl start booster-http
+}
+
+enable_services () {
+    sudo systemctl enable lotus-daemon
+    sudo systemctl enable lotus-miner
+}
+
 create_env_file
 install_systemd_daemon
 install_systemd_miner
@@ -111,3 +144,6 @@ if [ ${USE_BOOSTER_HTTP} == "y" ]; then
 fi
 
 reload_systemd
+stop_services
+start_services
+enable_services
