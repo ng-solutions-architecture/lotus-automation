@@ -26,7 +26,7 @@ RestartSec=10\n\n
 MemoryAccounting=true\n
 MemoryHigh=8G\n
 MemoryMax=10G\n
-LimitNOFILE=8192:10240\n\n
+LimitNOFILE=256000:512000\n\n
 
 StandardOutput=append:$LOG_DIR/lotus.log
 StandardError=append:$LOG_DIR/lotus.log
