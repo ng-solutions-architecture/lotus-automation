@@ -9,11 +9,18 @@ clone_lotus() {
 }
 
 set_build_flags() {
-  export RUSTFLAGS="-C target-cpu=native -g"
-  echo 'export RUSTFLAGS="-C target-cpu=native -g"' >> $HOME/.bashrc
-  export FFI_BUILD_FROM_SOURCE=1
-  echo export FFI_BUILD_FROM_SOURCE=1 >> $HOME/.bashrc
+  if [[ $(cat /proc/cpuinfo | grep -i -E 'sha256|sha_ni') ]]; then
+    echo "SHA256 extensions found on CPU"
+    export RUSTFLAGS="-C target-cpu=native -g"
+    echo 'export RUSTFLAGS="-C target-cpu=native -g"' >> $HOME/.bashrc
+    export FFI_BUILD_FROM_SOURCE=1
+    echo 'export FFI_BUILD_FROM_SOURCE=1' >> $HOME/.bashrc
+  else
+    echo "No SHA256 extensions found on CPU"
+  fi
+
   export FFI_USE_MULTICORE_SDR=0
+  echo 'export FFI_USE_MULTICORE_SDR=0' >> $HOME/.bashrc
 }
 
 build_lotus() {
