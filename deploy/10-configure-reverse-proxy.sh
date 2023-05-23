@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source ./variables
 source $HOME/.bashrc
+source ./variables
 
 install_nginx () {
     sudo apt update
