@@ -19,7 +19,7 @@ initialize_sp() {
   lotus-miner fetch-params ${SIZE}
 
   echo "Initializing lotus-miner..."
-  lotus-miner init --no-local-storage --owner=$owner --worker=$worker --sector-size=${SIZE}
+  lotus-miner init --no-local-storage --owner=$0WNER_WALLET --worker=$WORKER_WALLET --sector-size=${SIZE}
 }
 
 configure_miner() {
