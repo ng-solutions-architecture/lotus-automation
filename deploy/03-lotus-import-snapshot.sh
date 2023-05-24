@@ -23,18 +23,18 @@ import_snapshot() {
 
   export LOTUS_PATH=$LOTUS_DIR
   echo "export LOTUS_PATH=$LOTUS_DIR" >> $HOME/.bashrc
-  nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${LOG}/lotus.log 2>&1 &
+  nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst > ${LOG}/lotus.log 2>&1 &
 
-  while true; do
-        if [[ $(lotus sync wait) ]]; then
-                break
-        else
-                echo "Waiting for snapshot to be imported and chain to be synced..."
-        fi
+  while ! grep -q "100.00%" ${LOG}/lotus.log; do
+    sleep 60
   done
+}
 
-
+sync_chain() {
+  echo "Syncing the chain..."
+  lotus sync wait
 }
 
 download_snapshot ${INSTALL_DIR}
 import_snapshot ${INSTALL_DIR} ${LOG_DIR}
+sync_chain
