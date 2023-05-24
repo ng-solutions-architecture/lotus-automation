@@ -58,4 +58,9 @@ install_lotus() {
 
 
 echo "Building lotus."
-download_snapshot ${INSTALL_DIR} &>/dev/null && build_lotus ${INSTALL_DIR} && install_lotus
+download_snapshot ${INSTALL_DIR} >${INSTALL_DIR}/download.log &
+pid_download=$!
+build_lotus ${INSTALL_DIR}
+install_lotus
+wait $pid_download
+rm ${INSTALL_DIR}/download.log
