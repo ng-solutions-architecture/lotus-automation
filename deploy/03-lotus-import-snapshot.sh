@@ -18,15 +18,21 @@ import_snapshot() {
   DIR=$1
   LOG=$2
 
-  echo "Importing chain snapshot. This takes ~30min for mainnet."
-  echo "Current time is $(date +%T)"
+  echo "Starting import of chain snapshot at $(date +%T). This takes a while..."
 
   export LOTUS_PATH=$LOTUS_DIR
   echo "export LOTUS_PATH=$LOTUS_DIR" >> $HOME/.bashrc
   nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst > ${LOG}/lotus.log 2>&1 &
 
   while ! grep -q "100.00%" ${LOG}/lotus.log; do
-    sleep 60
+    tail -n2 ${LOG}/lotus.log
+    sleep 1
+  done
+  
+  echo "Import completed. Performing sanity check, please wait..."
+  
+  while ! grep -q "sanity check completed" ${LOG}/lotus.log; do
+    sleep 1
   done
 }
 
