@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+source $HOME/.bashrc
 source ./variables
 
 install_software_deps() {
