@@ -1,7 +1,7 @@
 #!/bin/bash
 
-bash -c 'source $HOME/.bashrc'
-bash -c 'source ./variables'
+source $HOME/.bashrc
+source ./variables
 
 cleanup_install_dirs () {
     echo "removing temporary install dirs"

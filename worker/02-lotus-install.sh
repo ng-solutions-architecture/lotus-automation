@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-bash -c 'source $HOME/.bashrc'
-bash -c 'source ./variables'
+source $HOME/.bashrc
+source ./variables
 
 clone_lotus() {
   git clone https://github.com/filecoin-project/lotus.git

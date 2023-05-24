@@ -1,7 +1,7 @@
 #!/bin/bash
 
-bash -c 'source $HOME/.bashrc'
-bash -c 'source ./variables'
+source $HOME/.bashrc
+source ./variables
 
 set_extra_boost_vars() {
   export APISEALER=${MINER_API_INFO}
