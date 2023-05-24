@@ -3,6 +3,17 @@
 bash -c 'source $HOME/.bashrc'
 bash -c 'source ./variables'
 
+download_snapshot() {
+  DIR=$1
+  rm ${DIR}/latest-lotus-snapshot.zst*
+  echo "Downloading latest chain snapshot"
+
+  if [ $USE_CALIBNET == "y" ];
+  then aria2c -x5 https://snapshots.calibrationnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
+    else aria2c -x5 https://snapshots.mainnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
+  fi
+}
+
 clone_lotus() {
   git clone https://github.com/filecoin-project/lotus.git
   git checkout $LOTUS_VERSION
@@ -47,7 +58,4 @@ install_lotus() {
 
 
 echo "Building lotus."
-build_lotus ${INSTALL_DIR}
-
-echo "Installing lotus."
-install_lotus
+download_snapshot ${INSTALL_DIR} &>/dev/null && build_lotus ${INSTALL_DIR} && install_lotus
