@@ -26,10 +26,11 @@ import_snapshot() {
 
   while ! grep -q "100.00%" ${LOG}/lotus.log; do
     tail -n2 ${LOG}/lotus.log
-    sleep 1
+    sleep 10
   done
   
-  echo "Import completed. Performing sanity check, please wait..."
+  echo "
+  Import completed. Performing sanity check, please wait..."
   
   while ! grep -q "sanity check completed" ${LOG}/lotus.log; do
     sleep 1
