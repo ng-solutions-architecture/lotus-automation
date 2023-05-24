@@ -1,6 +1,7 @@
 #!/bin/bash
 
-bash -c 'source ./variables'
+source $HOME/.bashrc
+source ./variables
 
 install_software_deps() {
   echo "Installing all software dependencies."

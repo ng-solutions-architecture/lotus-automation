@@ -1,7 +1,7 @@
 #!/bin/bash
 
-bash -c 'source $HOME/.bashrc'
-bash -c 'source ./variables'
+source $HOME/.bashrc
+source ./variables
 
 install_nginx () {
     sudo apt update
