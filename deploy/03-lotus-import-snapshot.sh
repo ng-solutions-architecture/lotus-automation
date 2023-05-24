@@ -14,10 +14,15 @@ import_snapshot() {
   echo "export LOTUS_PATH=$LOTUS_DIR" >> $HOME/.bashrc
   nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst >> ${LOG}/lotus.log 2>&1 &
 
-  if [ $USE_CALIBNET == "y" ];
-  then sleep 10m
-    else sleep 30m
-  fi
+  while true; do
+        if [[ $(lotus info | grep "sync ok") ]]; then
+                break
+        else
+                echo "Waiting for snapshot to be imported and chain to be synced..."
+        fi
+  done
+
+
 }
 
 import_snapshot ${INSTALL_DIR} ${LOG_DIR}
