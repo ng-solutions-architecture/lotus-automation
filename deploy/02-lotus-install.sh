@@ -12,6 +12,12 @@ download_snapshot() {
   then aria2c -x5 https://snapshots.calibrationnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
     else aria2c -x5 https://snapshots.mainnet.filops.net/minimal/latest.zst -d ${DIR} -o latest-lotus-snapshot.zst
   fi
+  pid_download=$!
+}
+
+wait_for_download() {
+  wait $pid_download
+  rm ${INSTALL_DIR}/download.log
 }
 
 clone_lotus() {
@@ -59,8 +65,6 @@ install_lotus() {
 
 echo "Building lotus."
 download_snapshot ${INSTALL_DIR} >${INSTALL_DIR}/download.log &
-pid_download=$!
 build_lotus ${INSTALL_DIR}
 install_lotus
-wait $pid_download
-rm ${INSTALL_DIR}/download.log
+wait_for_download
