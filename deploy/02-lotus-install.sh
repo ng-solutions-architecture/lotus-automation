@@ -23,7 +23,7 @@ set_build_flags() {
   echo 'export FFI_USE_MULTICORE_SDR=0' >> $HOME/.bashrc
 
   export RUST_GPU_TOOLS_CUSTOM_GPU="${GPU_TYPE}:${CUDA_CORES}"
-  echo 'RUST_GPU_TOOLS_CUSTOM_GPU="${GPU_TYPE}:${CUDA_CORES}"' >> $HOME/.bashrc
+  echo 'export RUST_GPU_TOOLS_CUSTOM_GPU="${GPU_TYPE}:${CUDA_CORES}"' >> $HOME/.bashrc
 }
 
 build_lotus() {
