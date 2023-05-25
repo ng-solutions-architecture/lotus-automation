@@ -18,7 +18,7 @@ create_wallet() {
 }
 
 transfer_funds() {
-  echo "Transfer funds to $owner and $worker "
+  echo "Transfer funds to $OWNER_WALLET and $WORKER_WALLET "
   while true; do
       read -p "Have you transfered funds for the given wallet? (y/n) " choice
       if [ "$choice" == "y" ]; then
@@ -48,9 +48,9 @@ wait_for_funds() {
 }
 
 create_api_token() {
-    TOKEN=$(lotus auth api-info --perm admin | cut -d":" -f1 -cut -d"=" -f2)
-    echo "export ${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http" >> $HOME/.bashrc
-    export ${TOKEN}
+    TOKEN=$(lotus auth api-info --perm admin | cut -d":" -f1 | cut -d"=" -f2)
+    echo "export FULLNODE_API_INFO=${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http" >> $HOME/.bashrc
+    export export FULLNODE_API_INFO=${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http
 }
 
 create_daemon_config() {
@@ -84,8 +84,10 @@ create_daemon_config() {
 
 lotus_daemon_restart() {
   LOG=$1
+  echo "stopping Lotus daemon"
   lotus daemon stop
   sleep 15
+  echo "starting Lotus daemon"
   nohup lotus daemon >> ${LOG}/lotus.log 2>&1 &
   sleep 15
   lotus sync wait
