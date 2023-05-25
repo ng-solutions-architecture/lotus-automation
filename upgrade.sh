@@ -12,6 +12,19 @@ press_key() {
 "
 }
 
+exit_code_check() {
+  if [[ $exit_code -eq 1 ]]; then
+    echo "Exiting upgrade script because the desired version is already installed."
+    exit 1
+  fi
+}
+
 echo "Checking Lotus version..."
 run_task 01-lotus-daemon-upgrade.sh
-press_key
+exit_code=$?
+exit_code_check
+
+echo "Continuing upgrade..."
+# more tasks to follow
+
+echo "done!"

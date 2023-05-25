@@ -1,15 +1,17 @@
 #!/bin/bash
 
-source $HOME/.bashrc
 source ./variables
 
-check_lotus_daemon_version () {
-  INSTALLED_VERSION=v$(lotus version | awk '{print $2}'  | cut -d"-" -f1 | grep -v lotus)
-  if [[ "${INSTALLED_VERSION}" == "${LOTUS_VERSION}" ]]; then
-    echo "The desired lotus version ${LOTUS_VERSION} is already installed."
-    else
-        echo "Lotus will be upgraded to ${LOTUS_VERSION}"
-    fi
-}
+INSTALLED_VERSION=v$(lotus version | awk '{print $2}'  | cut -d"-" -f1 | grep -v lotus)
+if [[ "${INSTALLED_VERSION}" == "${LOTUS_VERSION}" ]]; then
+  echo "The desired lotus version ${LOTUS_VERSION} is already installed."
+  exit 1
+  else
+      echo "Lotus will be upgraded to ${LOTUS_VERSION}"
+  fi
+exit_code=$?
 
-check_lotus_daemon_version
+if [ $exit_code -eq 1 ]; then
+  echo "Exiting upgrade script because the desired version is already installed."
+  exit 1
+fi
