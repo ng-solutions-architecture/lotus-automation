@@ -21,10 +21,12 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
 
 ## Assumptions
 
+- You have read the storage provider documentation: https://docs.filecoin.io/storage-provider
 - Everything runs under a single user. Run the installer script as the non-root user under which you want Lotus to run.
 - Lotus-daemon, lotus-miner, boostd and booster-http are installed on a single machine.
 - Use Sealing-as-a-Service or add a sealing worker to your setup.
 - You will need access to some FIL (unless you build for calibration testnet).
+- Have Ubuntu Server installed (headless) with NVIDIA-drivers and CUDA if you have an NVIDIA GPU. You will need a GPU for storage proving! Verify your drivers with the command `nvidia-smi`.
 
 ## Getting started
 
