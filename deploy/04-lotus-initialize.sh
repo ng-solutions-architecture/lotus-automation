@@ -9,12 +9,10 @@ create_wallet() {
   lotus sync wait
 
   echo "Creating owner and worker wallets"
-  owner=$(lotus wallet new bls)
-  worker=$(lotus wallet new bls)
+  OWNER_WALLET=$(lotus wallet new bls)
+  WORKER_WALLET=$(lotus wallet new bls)
   
-  export OWNER_WALLET=${owner}
-  echo "echo OWNER_WALLET=${owner}" >> $HOME/.bashrc
-  export WORKER_WALLET=${WORKER_WALLET}
+  echo "export OWNER_WALLET=${OWNER_WALLET}" >> $HOME/.bashrc
   echo "export WORKER_WALLET=${WORKER_WALLET}" >> $HOME/.bashrc
 
 }
@@ -50,8 +48,8 @@ wait_for_funds() {
 }
 
 create_api_token() {
-    TOKEN=$(lotus auth api-info --perm admin)
-    echo "export ${TOKEN}" >> $HOME/.bashrc
+    TOKEN=$(lotus auth api-info --perm admin | cut -d":" -f1 -cut -d"=" -f2)
+    echo "export ${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http" >> $HOME/.bashrc
     export ${TOKEN}
 }
 
