@@ -86,10 +86,15 @@ lotus_daemon_restart() {
   LOG=$1
   echo "stopping Lotus daemon"
   lotus daemon stop
-  sleep 15
+
+  #temporary break for debugging
+  read -n 1 -s -r -p "Press any key to continue 
+
   echo "starting Lotus daemon"
   nohup lotus daemon >> ${LOG}/lotus.log 2>&1 &
-  sleep 15
+
+  read -n 1 -s -r -p "Press any key to continue
+
   lotus sync wait
 }
 
