@@ -29,6 +29,7 @@ set_build_flags() {
 build_lotus() {
   DIR=$1
   cd ${DIR}
+  export PATH=$PATH:/usr/local/go/bin
 
   clone_lotus
   cd ${DIR}/lotus
