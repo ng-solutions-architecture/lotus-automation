@@ -6,8 +6,6 @@ source ./variables
 create_wallet() {
   DIR=$1
   
-  lotus sync wait
-
   echo "Creating owner and worker wallets"
   OWNER_WALLET=$(lotus wallet new bls)
   WORKER_WALLET=$(lotus wallet new bls)
@@ -49,8 +47,11 @@ wait_for_funds() {
 
 create_api_token() {
     TOKEN=$(lotus auth api-info --perm admin | cut -d":" -f1 | cut -d"=" -f2)
-    echo "export FULLNODE_API_INFO=${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http" >> $HOME/.bashrc
-    export export FULLNODE_API_INFO=${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http
+}
+
+lotus_daemon_stop() {
+  lotus daemon stop
+  sleep 10
 }
 
 create_daemon_config() {
@@ -58,13 +59,15 @@ create_daemon_config() {
     IP=$1
     PUB_IP=$3
     P2P_PORT=$4
+
+    echo "export FULLNODE_API_INFO=${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http" >> $HOME/.bashrc
+    export FULLNODE_API_INFO=${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http
     
     mv $LOTUS_DIR/config.toml $LOTUS_DIR/config.toml.backup
 
     printf "
 [API]\n
   ListenAddress = \"/ip4/0.0.0.0/tcp/$PORT/http\"\n
-  RemoteListenAddress = \"$IP:$PORT\"\n\n
 
 [Libp2p]\n
   ListenAddresses = [\"/ip4/0.0.0.0/tcp/${P2P_PORT}\"]\n
@@ -82,20 +85,11 @@ create_daemon_config() {
   " > $LOTUS_DIR/config.toml
 }
 
-lotus_daemon_restart() {
+lotus_daemon_start() {
   LOG=$1
-  echo "stopping Lotus daemon"
-  lotus daemon stop
-
-  #temporary break for debugging
-  read -n 1 -s -r -p "Press any key to continue 
 
   echo "starting Lotus daemon"
-  nohup lotus daemon >> ${LOG}/lotus.log 2>&1 &
-
-  read -n 1 -s -r -p "Press any key to continue
-
-  lotus sync wait
+  lotus daemon >> ${LOG}/lotus.log 2>&1 &
 }
 
 check_libp2p() {
@@ -118,6 +112,7 @@ create_wallet ${INSTALL_DIR}
 transfer_funds
 wait_for_funds
 create_api_token ${DAEMON_IP} ${DAEMON_PORT} ${INSTALL_DIR}
+lotus_daemon_stop ${LOG_DIR}
 create_daemon_config ${DAEMON_IP} ${DAEMON_PORT} ${PUBLIC_IP} ${P2P_PORT}
-lotus_daemon_restart ${LOG_DIR}
+lotus_daemon_start ${LOG_DIR}
 check_libp2p ${PUBLIC_IP} ${P2P_PORT}
