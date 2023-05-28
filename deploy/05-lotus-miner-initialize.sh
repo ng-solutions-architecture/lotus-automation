@@ -14,6 +14,9 @@ initialize_sp() {
   echo "export LOTUS_SEALING_AGGREGATECOMMITS=false" >> $HOME/.bashrc
   export LOTUS_SEALING_BATCHPRECOMMITS=false
   echo "export LOTUS_SEALING_BATCHPRECOMMITS=false" >> $HOME/.bashrc
+  
+  export LOTUS_MINER_PATH=${LOTUS_MINER_PATH}
+  echo "export LOTUS_MINER_PATH=${LOTUS_MINER_PATH}" >> $HOME/.bashrc
 
   echo "Fetching +100GB parameter files. This might take a long time..."
   lotus-miner fetch-params ${SIZE}
@@ -26,7 +29,7 @@ start_miner() {
   DIR=$1
   WAIT_TIME_SEC=180
   source ./variables
-  echo "Miner repo will be created at ${LOTUS_MINER_DIR}"
+  echo "Miner repo will be created at ${LOTUS_MINER_PATH}"
   nohup lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
   echo "Starting lotus-miner"
   sleep ${WAIT_TIME_SEC}
@@ -80,6 +83,6 @@ announce_miner() {
 
 initialize_sp ${SECTOR_SIZE}
 start_miner ${LOG_DIR}
-configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_DIR}
+configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_PATH}
 restart_miner
 announce_miner ${PUBLIC_IP} ${P2P_PORT}
