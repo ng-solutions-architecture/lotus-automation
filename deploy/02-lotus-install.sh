@@ -24,6 +24,9 @@ set_build_flags() {
 
   export RUST_GPU_TOOLS_CUSTOM_GPU="${GPU_TYPE}:${CUDA_CORES}"
   echo "export RUST_GPU_TOOLS_CUSTOM_GPU=\"${GPU_TYPE}:${CUDA_CORES}\"" >> $HOME/.bashrc
+
+  export LOTUS_PATH=${LOTUS_PATH}
+  echo "export LOTUS_PATH=${LOTUS_PATH}" >> $HOME/.bashrc
 }
 
 build_lotus() {
