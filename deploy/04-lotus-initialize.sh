@@ -60,8 +60,8 @@ create_daemon_config() {
     PUB_IP=$3
     P2P_PORT=$4
 
-    echo "export FULLNODE_API_INFO=${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http" >> $HOME/.bashrc
-    export FULLNODE_API_INFO=${TOKEN}:/ip4:${DAEMON_IP}/tcp/${DAEMON_PORT}/http
+    echo "export FULLNODE_API_INFO=${TOKEN}:/ip4/${DAEMON_IP}/tcp/${DAEMON_PORT}" >> $HOME/.bashrc
+    export FULLNODE_API_INFO=${TOKEN}:/ip4/${DAEMON_IP}/tcp/${DAEMON_PORT}
     
     mv $LOTUS_DIR/config.toml $LOTUS_DIR/config.toml.backup
 
