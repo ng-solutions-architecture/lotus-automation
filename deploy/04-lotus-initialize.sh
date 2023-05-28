@@ -60,8 +60,8 @@ create_daemon_config() {
     PUB_IP=$3
     P2P_PORT=$4
 
-    echo "export FULLNODE_API_INFO=${TOKEN}:/ip4/${DAEMON_IP}/tcp/${DAEMON_PORT}" >> $HOME/.bashrc
-    export FULLNODE_API_INFO=${TOKEN}:/ip4/${DAEMON_IP}/tcp/${DAEMON_PORT}
+    echo "export FULLNODE_API_INFO=${TOKEN}:/ip4/${DAEMON_IP}/tcp/${DAEMON_PORT}/http" >> $HOME/.bashrc
+    export FULLNODE_API_INFO=${TOKEN}:/ip4/${DAEMON_IP}/tcp/${DAEMON_PORT}/http
     
     mv $LOTUS_DIR/config.toml $LOTUS_DIR/config.toml.backup
 
@@ -87,9 +87,11 @@ create_daemon_config() {
 
 lotus_daemon_start() {
   LOG=$1
+  source $HOME/.bashrc
 
   echo "starting Lotus daemon"
   lotus daemon >> ${LOG}/lotus.log 2>&1 &
+  sleep 15
 }
 
 check_libp2p() {

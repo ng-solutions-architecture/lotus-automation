@@ -19,8 +19,20 @@ initialize_sp() {
   lotus-miner fetch-params ${SIZE}
 
   echo "Initializing lotus-miner..."
-  lotus-miner init --no-local-storage --owner=$0WNER_WALLET --worker=$WORKER_WALLET --sector-size=${SIZE}
+  lotus-miner init --no-local-storage --owner=$OWNER_WALLET --worker=$WORKER_WALLET --sector-size=${SIZE}
 }
+
+start_miner() {
+  DIR=$1
+  WAIT_TIME_SEC=180
+
+  nohup lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
+  echo "Starting lotus-miner"
+  sleep ${WAIT_TIME_SEC}
+  lotus-miner info
+
+  echo "Miner running"
+  }
 
 configure_miner() {
     IP=$1
@@ -46,18 +58,18 @@ configure_miner() {
   " > ${DIR}/config.toml
 }
 
-start_miner() {
-  DIR=$1
-  WAIT_TIME_SEC=180
+restart_miner(){
+  lotus-miner stop
+  sleep 5
+  lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
+}
 
-  nohup lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
-  echo "Starting lotus-miner"
-  sleep ${WAIT_TIME_SEC}
-  lotus-miner info
-
-  echo "Miner running"
-  }
-
+wait_for_miner(){
+  while ! grep -q "starting up miner" ${LOG}/lotusminer.log; do
+    sleep 1
+  done
+  
+}
 announce_miner() {
   PUB_IP=$1
   P2P_PORT=$2
@@ -66,6 +78,7 @@ announce_miner() {
 }
 
 initialize_sp ${SECTOR_SIZE}
-configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_DIR}
 start_miner ${LOG_DIR}
+configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_DIR}
+restart_miner
 announce_miner ${PUBLIC_IP} ${P2P_PORT}

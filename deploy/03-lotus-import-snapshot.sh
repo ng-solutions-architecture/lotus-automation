@@ -30,7 +30,7 @@ import_snapshot() {
   done
   
   echo "
-  Import completed. Performing sanity check, please wait..."
+Import completed. Performing sanity check, please wait..."
   
   while ! grep -q "sanity check completed" ${LOG}/lotus.log; do
     sleep 1
