@@ -4,7 +4,7 @@ run_task() {
   TASK=$1
 
   chmod +x ./deploy/$TASK
-  ./deploy/$TASK
+  bash -i ./deploy/$TASK
 }
 
 press_key() {
