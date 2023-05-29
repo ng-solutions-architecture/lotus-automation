@@ -17,11 +17,12 @@ download_snapshot() {
 import_snapshot() {
   DIR=$1
   LOG=$2
+  REPO=$3
 
   echo "Starting import of chain snapshot at $(date +%T). This takes a while..."
 
-  export LOTUS_PATH=$LOTUS_PATH
-  echo "export LOTUS_PATH=$LOTUS_PATH" >> $HOME/.bashrc
+  export LOTUS_PATH=${REPO}
+  echo "export LOTUS_PATH=${REPO}" >> $HOME/.bashrc
   nohup lotus daemon --import-snapshot ${DIR}/latest-lotus-snapshot.zst > ${LOG}/lotus.log 2>&1 &
 
   while ! grep -q "100.00%" ${LOG}/lotus.log; do
@@ -43,5 +44,5 @@ sync_chain() {
 }
 
 download_snapshot ${INSTALL_DIR}
-import_snapshot ${INSTALL_DIR} ${LOG_DIR}
+import_snapshot ${INSTALL_DIR} ${LOG_DIR} ${LOTUS_PATH}
 sync_chain
