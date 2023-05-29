@@ -74,15 +74,16 @@ wait_for_miner(){
   done
   
 }
-announce_miner() {
-  PUB_IP=$1
-  P2P_PORT=$2
 
-  lotus-miner actor set-addrs /ip4/${PUB_IP}/tcp/${P2P_PORT}
+lotus_miner_api() {
+  MINER_API=$(lotus-miner auth create-token --perm admin)
+  echo "export MINER_API_INFO=${MINER_API}:/ip4/${MINER_IP}/tcp/${MINER_PORT}/http" >> $HOME/.bashrc
 }
+
 
 initialize_sp ${SECTOR_SIZE}
 start_miner ${LOG_DIR}
 configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_PATH}
+lotus_miner_api
 restart_miner
-announce_miner ${PUBLIC_IP} ${P2P_PORT}
+wait_for_miner
