@@ -63,12 +63,14 @@ configure_miner() {
 }
 
 restart_miner(){
+  LOG=$1
   lotus-miner stop
   sleep 5
-  lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
+  lotus-miner run > ${LOG}/lotusminer.log 2>&1 &
 }
 
 wait_for_miner(){
+  LOG=$1
   while ! grep -q "starting up miner" ${LOG}/lotusminer.log; do
     sleep 1
   done
@@ -85,5 +87,5 @@ initialize_sp ${SECTOR_SIZE}
 start_miner ${LOG_DIR}
 configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_PATH}
 lotus_miner_api
-restart_miner
-wait_for_miner
+restart_miner ${LOG_DIR}
+wait_for_miner ${LOG_DIR}
