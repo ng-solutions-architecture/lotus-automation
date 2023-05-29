@@ -63,7 +63,7 @@ create_daemon_config() {
     echo "export FULLNODE_API_INFO=${TOKEN}:/ip4/${DAEMON_IP}/tcp/${DAEMON_PORT}/http" >> $HOME/.bashrc
     export FULLNODE_API_INFO=${TOKEN}:/ip4/${DAEMON_IP}/tcp/${DAEMON_PORT}/http
     
-    mv $LOTUS_DIR/config.toml $LOTUS_DIR/config.toml.backup
+    mv $LOTUS_PATH/config.toml $LOTUS_PATH/config.toml.backup
 
     printf "
 [API]\n
@@ -82,7 +82,7 @@ create_daemon_config() {
   # type: bool\n
   # env var: LOTUS_CHAINSTORE_ENABLESPLITSTORE\n
   EnableSplitstore = true\n
-  " > $LOTUS_DIR/config.toml
+  " > $LOTUS_PATH/config.toml
 }
 
 lotus_daemon_start() {
