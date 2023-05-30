@@ -22,7 +22,7 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
 ## Assumptions
 
 - You have read the storage provider documentation: https://docs.filecoin.io/storage-provider
-- Everything runs under a single user. Run the installer script as the non-root user under which you want Lotus to run.
+- Everything runs under a single user. Run the installer script as the non-root user under which you want Lotus to run. This user needs `sudo` permissions.
 - Lotus-daemon, lotus-miner, boostd and booster-http are installed on a single machine.
 - Use Sealing-as-a-Service or add a sealing worker to your setup.
 
