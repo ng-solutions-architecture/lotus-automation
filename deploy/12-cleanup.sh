@@ -9,4 +9,11 @@ cleanup_install_dirs () {
     rm -rf $INSTALL_DIR/boost
 }
 
+final_notes () {
+    echo "You now have Lotus Daemon, Lotus Miner running.
+    Start Boost and Booster-HTTP with:
+    sudo systemctl start boostd 
+    sudo systemctl start booster-http"
+}
+
 cleanup_install_dirs
