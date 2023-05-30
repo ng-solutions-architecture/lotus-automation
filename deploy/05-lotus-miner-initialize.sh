@@ -28,7 +28,6 @@ initialize_sp() {
 start_miner() {
   DIR=$1
   WAIT_TIME_SEC=180
-  echo "Miner repo will be created at ${LOTUS_MINER_PATH}"
   nohup lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
   echo "Starting lotus-miner"
   sleep ${WAIT_TIME_SEC}
@@ -47,7 +46,7 @@ configure_miner() {
     printf "
 [API]\n
   ListenAddress = \"/ip4/0.0.0.0/tcp/${PORT}/http\"\n
-  \#RemoteListenAddress = \"${IP}:${PORT}\"\n
+  #RemoteListenAddress = \"${IP}:${PORT}\"\n
   Timeout = \"30s\"\n\n
 
 [Storage]\n
@@ -61,11 +60,9 @@ configure_miner() {
   " > ${DIR}/config.toml
 }
 
-restart_miner(){
-  LOG=$1
+stop_miner(){
   lotus-miner stop
   sleep 15
-  lotus-miner run > ${LOG}/lotusminer.log 2>&1 &
 }
 
 wait_for_miner(){
@@ -85,7 +82,8 @@ lotus_miner_api() {
 
 initialize_sp ${SECTOR_SIZE}
 start_miner ${LOG_DIR}
-configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_PATH}
 lotus_miner_api
-restart_miner ${LOG_DIR}
+stop_miner
+configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_PATH}
+start_miner ${LOG_DIR}
 wait_for_miner ${LOG_DIR}
