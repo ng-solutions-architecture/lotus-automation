@@ -23,5 +23,6 @@ add_miner_storage() {
   lotus-miner storage list
 }
 
+lotus_miner_api
 announce_miner ${PUBLIC_IP} ${P2P_PORT}
 add_miner_storage ${SEALED_STORAGE}
