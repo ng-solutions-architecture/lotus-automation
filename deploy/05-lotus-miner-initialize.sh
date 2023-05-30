@@ -27,13 +27,8 @@ initialize_sp() {
 
 start_miner() {
   DIR=$1
-  WAIT_TIME_SEC=180
   nohup lotus-miner run > ${DIR}/lotusminer.log 2>&1 &
   echo "Starting lotus-miner"
-  sleep ${WAIT_TIME_SEC}
-  lotus-miner info
-
-  echo "Miner running"
   }
 
 configure_miner() {
@@ -69,7 +64,8 @@ wait_for_miner(){
   while ! grep -q "starting up miner" ${LOG}/lotusminer.log; do
     sleep 1
   done
-  sleep 15  
+  lotus-miner info
+  sleep 5 
 }
 
 lotus_miner_api() {
@@ -85,4 +81,4 @@ start_miner ${LOG_DIR}
 #lotus_miner_api
 #stop_miner
 #start_miner ${LOG_DIR}
-#wait_for_miner ${LOG_DIR}
+wait_for_miner ${LOG_DIR}
