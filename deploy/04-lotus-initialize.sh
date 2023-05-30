@@ -39,7 +39,7 @@ wait_for_funds() {
           prev_balance=${current_balance}
           break
       else
-          echo -e "Transfer funds to \nOwnerwallet: $OWNER_WALLET \nWorker wallet: $WORKER_WALLET "
+          echo -e "Transfer funds to: \n- Owner wallet: $OWNER_WALLET \n- Worker wallet: $WORKER_WALLET "
       fi
       sleep 1m
   done
