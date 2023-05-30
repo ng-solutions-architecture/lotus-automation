@@ -64,7 +64,7 @@ configure_miner() {
 restart_miner(){
   LOG=$1
   lotus-miner stop
-  sleep 5
+  sleep 15
   lotus-miner run > ${LOG}/lotusminer.log 2>&1 &
 }
 
