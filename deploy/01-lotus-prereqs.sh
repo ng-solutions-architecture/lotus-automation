@@ -5,8 +5,9 @@ source ./variables
 
 install_software_deps() {
   echo "Installing all software dependencies."
-
-  sudo apt update && sudo apt upgrade -y
+  cp $HOME/.bashrc $HOME/bashrc.bckp
+  sudo apt update
+  sudo apt upgrade -y
   sudo apt install mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev git-all wget aria2 nodejs npm -y
 }
 
