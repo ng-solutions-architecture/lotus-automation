@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ../variables
+source ./variables
 
 warning_message (){
     
@@ -11,7 +11,7 @@ warning_message (){
           echo "Removing configuration and services..."
           break
       elif [ "$choice" == "n" ]; then
-          echo -e "If you wish stop the removal, press ctrl-c"
+          exit 2
       else
           echo "Invalid input"
       fi
@@ -51,5 +51,10 @@ cleanup_all (){
     cp ~/bashrc.bckp ~/.bashrc
 }
 
+reboot_message () {
+    echo "It is recommended to reboot your server before reinstalling Lotus."
+}
+
 warning_message
 cleanup_all
+reboot_message

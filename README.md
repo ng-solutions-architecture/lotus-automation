@@ -44,6 +44,16 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
     ./install.sh
 ```
 
+## Cleanup script
+
+NOTE: use with caution!
+In order to clean up an entire (or failed) installation, run:
+
+```shell
+    chmod +x ./cleanup.sh
+    ./cleanup.sh
+```
+
 ## Contributors
 - Bob Dubois: @bobdubois
 - Anjor Kanekar: @anjor
