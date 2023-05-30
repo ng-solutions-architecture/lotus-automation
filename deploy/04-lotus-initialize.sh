@@ -39,7 +39,7 @@ wait_for_funds() {
           prev_balance=${current_balance}
           break
       else
-          echo "Transfer funds to $OWNER_WALLET and $WORKER_WALLET "
+          echo -e "Transfer funds to \nOwnerwallet: $OWNER_WALLET \nWorker wallet: $WORKER_WALLET "
       fi
       sleep 1m
   done
@@ -111,7 +111,7 @@ check_libp2p() {
 }
 
 create_wallet ${INSTALL_DIR}
-#transfer_funds
+transfer_funds
 wait_for_funds
 create_api_token ${DAEMON_IP} ${DAEMON_PORT} ${INSTALL_DIR}
 lotus_daemon_stop ${LOG_DIR}
