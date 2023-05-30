@@ -68,17 +68,9 @@ wait_for_miner(){
   sleep 5 
 }
 
-lotus_miner_api() {
-  MINER_API=$(lotus-miner auth create-token --perm admin)
-  echo "export MINER_API_INFO=${MINER_API}:/ip4/${MINER_IP}/tcp/${MINER_PORT}/http" >> $HOME/.bashrc
-  export MINER_API_INFO=${MINER_API}:/ip4/${MINER_IP}/tcp/${MINER_PORT}/http
-}
-
-
 initialize_sp ${SECTOR_SIZE}
 configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_PATH}
 start_miner ${LOG_DIR}
-#lotus_miner_api
 #stop_miner
 #start_miner ${LOG_DIR}
 wait_for_miner ${LOG_DIR}
