@@ -17,3 +17,4 @@ final_notes () {
 }
 
 cleanup_install_dirs
+final_notes
