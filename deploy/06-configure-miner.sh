@@ -12,13 +12,14 @@ lotus_miner_api() {
 announce_miner() {
   PUB_IP=$1
   P2P_PORT=$2
-
+  echo "Announcing miner on-chain"
   lotus-miner actor set-addrs /ip4/${PUB_IP}/tcp/${P2P_PORT}
 }
 
 add_miner_storage() {
   STORAGE=$1
   sudo chown $(whoami) ${STORAGE}
+  echo "Adding storage path to miner"
   lotus-miner storage attach --init --store ${STORAGE}
   lotus-miner storage list
 }
