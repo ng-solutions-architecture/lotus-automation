@@ -28,7 +28,7 @@ set_boost_vars() {
 send_funds_to_boost() {
   lotus send --from ${OWNER_WALLET} ${PUBLISH_STORAGE_DEALS_WALLET} 0.2
   lotus send --from ${OWNER_WALLET} ${COLLAT_WALLET} 0.2
-  echo "Waiting 3 minutes for funds to arrive"
+  echo "Waiting 2 minutes for funds to arrive"
   sleep 2m
 }
 
