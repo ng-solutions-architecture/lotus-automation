@@ -19,7 +19,7 @@ initialize_sp() {
   echo "export LOTUS_MINER_PATH=${LOTUS_MINER_PATH}" >> $HOME/.bashrc
 
   echo "Fetching +100GB parameter files. This might take a long time..."
-  lotus-miner fetch-params ${SIZE}
+  #lotus-miner fetch-params ${SIZE}
 
   echo "Initializing lotus-miner..."
   lotus-miner init --no-local-storage --owner=$OWNER_WALLET --worker=$WORKER_WALLET --sector-size=${SIZE}
@@ -80,9 +80,9 @@ lotus_miner_api() {
 
 
 initialize_sp ${SECTOR_SIZE}
-start_miner ${LOG_DIR}
-lotus_miner_api
-stop_miner
 configure_miner ${MINER_IP} ${MINER_PORT} ${LOTUS_MINER_PATH}
 start_miner ${LOG_DIR}
-wait_for_miner ${LOG_DIR}
+#lotus_miner_api
+#stop_miner
+#start_miner ${LOG_DIR}
+#wait_for_miner ${LOG_DIR}
