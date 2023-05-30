@@ -54,7 +54,7 @@ build_boost() {
     git checkout ${BOOST_VERSION}
 
     if [ $USE_CALIBNET == "y" ];
-        then make clean calibnet
+        then make clean calibnet && make booster-http
     else 
       make clean build
       make booster-http
