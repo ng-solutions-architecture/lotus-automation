@@ -3,6 +3,12 @@
 source $HOME/.bashrc
 source ./variables
 
+lotus_miner_api() {
+  MINER_TOKEN=$(lotus-miner auth create-token --perm admin)
+  echo "export MINER_API_INFO=${MINER_TOKEN}:/ip4/${MINER_IP}/tcp/${MINER_PORT}/http" >> $HOME/.bashrc
+  export MINER_API_INFO=${MINER_TOKEN}:/ip4/${MINER_IP}/tcp/${MINER_PORT}/http
+}
+
 announce_miner() {
   PUB_IP=$1
   P2P_PORT=$2
