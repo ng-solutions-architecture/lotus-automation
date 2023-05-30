@@ -73,7 +73,7 @@ wait_for_miner(){
   while ! grep -q "starting up miner" ${LOG}/lotusminer.log; do
     sleep 1
   done
-  
+  sleep 15  
 }
 
 lotus_miner_api() {
