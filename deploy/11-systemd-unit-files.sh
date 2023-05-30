@@ -4,7 +4,7 @@ source $HOME/.bashrc
 source ./variables
 
 create_env_file () {
-    cat $HOME/.bashrc | grep export | awk '{split($0,a," "); print a[2]}' | sudo tee /etc/lotus_env > /dev/null
+    cat $HOME/.bashrc | grep export | sed "s/^export //" | sudo tee /etc/lotus_env > /dev/null
 }
 
 install_systemd_daemon () {
