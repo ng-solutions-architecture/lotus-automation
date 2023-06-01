@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -x
+set -e
+shopt -s nullglob
+
 source ./variables
 
 INSTALLED_VERSION=v$(lotus version | awk '{print $2}'  | cut -d"-" -f1 | grep -v lotus)

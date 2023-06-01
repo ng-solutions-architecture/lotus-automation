@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -x
+set -e
+shopt -s nullglob
+
 source ./variables
 
 warning_message (){
