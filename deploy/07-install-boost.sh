@@ -4,8 +4,8 @@ set -x
 set -e
 shopt -s nullglob
 
-source $HOME/.bashrc
-source ./variables
+source $HOME/.bashrc > /dev/null 2>&1
+source ./variables > /dev/null 2>&1
 
 create_boost_wallets() {
   DIR=$1
