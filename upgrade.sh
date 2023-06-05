@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -x
+set -e
+shopt -s nullglob
+
 run_task() {
   TASK=$1
 

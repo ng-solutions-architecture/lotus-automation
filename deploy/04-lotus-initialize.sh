@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -x
+set -e
+shopt -s nullglob
+
 source $HOME/.bashrc
 source ./variables
 
