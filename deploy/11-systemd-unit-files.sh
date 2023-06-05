@@ -4,8 +4,8 @@ set -x
 set -e
 shopt -s nullglob
 
-source $HOME/.bashrc
-source ./variables
+source $HOME/.bashrc > /dev/null 2>&1
+source ./variables > /dev/null 2>&1
 
 create_env_file () {
     cat $HOME/.bashrc | grep export | sed "s/^export //" | sudo tee /etc/lotus_env > /dev/null

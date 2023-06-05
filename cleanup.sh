@@ -4,7 +4,7 @@ set -x
 set -e
 shopt -s nullglob
 
-source ./variables
+source ./variables > /dev/null 2>&1
 
 warning_message (){
     

@@ -4,8 +4,8 @@ set -x
 set -e
 shopt -s nullglob
 
-source $HOME/.bashrc
-source ./variables
+source $HOME/.bashrc > /dev/null 2>&1
+source ./variables > /dev/null 2>&1
 
 clone_lotus() {
   git clone https://github.com/filecoin-project/lotus.git

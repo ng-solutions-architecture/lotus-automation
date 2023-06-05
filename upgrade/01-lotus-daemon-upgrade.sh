@@ -4,7 +4,7 @@ set -x
 set -e
 shopt -s nullglob
 
-source ./variables
+source ./variables > /dev/null 2>&1
 
 INSTALLED_VERSION=v$(lotus version | awk '{print $2}'  | cut -d"-" -f1 | grep -v lotus)
 if [[ "${INSTALLED_VERSION}" == "${LOTUS_VERSION}" ]]; then
