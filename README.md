@@ -37,7 +37,7 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
 ```shell
     git clone https://github.com/ng-solutions-architecture/lotus-automation.git
     cd lotus-automation
-    git checkout v0.1.0
+    git checkout latest
 ```
 - edit the `variables` file to match your environment
 - make installer script executable
