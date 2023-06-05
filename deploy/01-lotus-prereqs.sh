@@ -11,6 +11,25 @@ install_software_deps() {
   sudo apt install mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev git-all wget aria2 nodejs npm -y
 }
 
+check_nvidia() {
+  if [[ $(nvidia-smi) ]]; then 
+    echo "NVIDIA driver installed"
+  else 
+    echo "No NVIDIA driver was found"
+    while true; do
+     read -p "Do you want to continue? (y/n) " choice
+     if [ "$choice" == "y" ]; then
+         echo "Continuing installation without NVIDIA driver..."
+         break
+     elif [ "$choice" == "n" ]; then
+         exit 2
+     else
+         echo "Invalid input"
+     fi
+    done
+  fi
+}
+
 install_rust() {
   echo "Installing rust."
 
@@ -47,6 +66,7 @@ set_limits() {
 }
 
 # Install prerequisites
+check_nvidia
 create_dirs ${INSTALL_DIR} ${LOG_DIR}
 install_software_deps
 install_rust
