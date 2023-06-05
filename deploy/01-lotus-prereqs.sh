@@ -17,9 +17,9 @@ install_software_deps() {
 
 check_nvidia() {
   if [[ $(nvidia-smi) ]]; then 
-    echo "NVIDIA driver installed"
+    echo "NVIDIA driver installed. Continuing."
   else 
-    echo "No NVIDIA driver was found"
+    echo "No NVIDIA driver was found. You will need a GPU for a storage proving."
     while true; do
      read -p "Do you want to continue? (y/n) " choice
      if [ "$choice" == "y" ]; then
