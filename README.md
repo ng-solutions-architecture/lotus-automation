@@ -59,6 +59,11 @@ In order to clean up an entire (or failed) installation, run:
     ./cleanup.sh
 ```
 
+## User feedback
+
+If you have code suggestions, please use Pull Requests.
+If you have general inquiries or feedback, please write an issue on this GitHub repo.
+
 ## Contributors
 - Bob Dubois: @bobdubois
 - Anjor Kanekar: @anjor
