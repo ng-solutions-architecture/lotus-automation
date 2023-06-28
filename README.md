@@ -40,10 +40,6 @@ This installer is built for Ubuntu Server LTS (minimal version 20.04).
     git checkout latest
 ```
 - edit the `variables` file to match your environment
-- make installer script executable
-```shell 
-    chmod +x ./install.sh
-```
 - run the installer script
 ```shell
     ./install.sh
