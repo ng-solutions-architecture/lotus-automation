@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# This script is still in development stage.
+# You need to set the FULLNODE_API_INFO and MINER_API_INFO in ~/.bashrc for it to work!
+
 set -x
 set -e
 shopt -s nullglob
