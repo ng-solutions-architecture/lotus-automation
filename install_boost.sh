@@ -19,8 +19,8 @@ press_key() {
 "
 }
 
-echo "Installing lotus prerequisites..."
-run_task 01-lotus-prereqs.sh
+echo "Installing boost prerequisites..."
+run_task 01a-boost-prereqs.sh
 
 echo "Installing lotus..."
 run_task 02-lotus-install.sh
