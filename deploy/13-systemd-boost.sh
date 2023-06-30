@@ -11,62 +11,6 @@ create_env_file () {
     cat $HOME/.bashrc | grep export | sed "s/^export //" | sudo tee /etc/lotus_env > /dev/null
 }
 
-install_systemd_daemon () {
-    printf "
-[Unit]\n
-Description=Lotus Daemon\n
-After=network-online.target\n
-Requires=network-online.target\n\n
-
-[Service]\n
-Environment=GOLOG_FILE=\"$LOG_DIR/lotus.log\"\n
-EnvironmentFile=/etc/lotus_env\n
-User=$(whoami)\n
-Group=$(whoami)\n
-ExecStart=/usr/local/bin/lotus daemon\n
-Restart=always\n
-RestartSec=10\n\n
-
-MemoryAccounting=true\n
-MemoryHigh=8G\n
-MemoryMax=10G\n
-LimitNOFILE=256000:512000\n\n
-
-StandardOutput=append:$LOG_DIR/lotus.log
-StandardError=append:$LOG_DIR/lotus.log
-
-[Install]\n
-WantedBy=multi-user.target\n
-" | sudo tee /etc/systemd/system/lotus-daemon.service > /dev/null
-
-    sudo chmod 0644 /etc/systemd/system/lotus-daemon.service
-}
-
-install_systemd_miner () {
-    printf "
-[Unit]\n
-Description=Lotus Miner\n
-After=lotus-daemon.service\n
-Requires=network-online.target\n\n
-
-[Service]\n
-Environment=GOLOG_FILE=\"$LOG_DIR/lotusminer.log\"\n
-EnvironmentFile=/etc/lotus_env\n
-User=$(whoami)\n
-Group=$(whoami)\n
-ExecStartPre=/bin/sleep 30\n
-ExecStart=/usr/local/bin/lotus-miner run\n\n
-
-StandardOutput=append:$LOG_DIR/lotusminer.log
-StandardError=append:$LOG_DIR/lotusminer.log
-
-[Install]\n
-WantedBy=multi-user.target\n
-" | sudo tee /etc/systemd/system/lotus-miner.service > /dev/null
-
-    sudo chmod 0644 /etc/systemd/system/lotus-miner.service
-}
-
 install_systemd_boostd () {
     printf "
 [Unit]\n
@@ -119,28 +63,17 @@ reload_systemd () {
 stop_services () {
     killall booster-http
     killall boostd
-    lotus-miner stop
-    sleep 5
-    lotus daemon stop
-    sleep 10
 }
 start_services () {
-    sudo systemctl start lotus-daemon
-    sudo systemctl start lotus-miner
-    sleep 30
     sudo systemctl start boostd
     sleep 5
     sudo systemctl start booster-http
 }
 
 enable_services () {
-    sudo systemctl enable lotus-daemon
-    sudo systemctl enable lotus-miner
 }
 
 create_env_file
-install_systemd_daemon
-install_systemd_miner
 install_systemd_boostd
 
 if [ ${USE_BOOSTER_HTTP} == "y" ]; then
@@ -150,4 +83,4 @@ fi
 reload_systemd
 stop_services
 start_services
-enable_services
+#enable_services
