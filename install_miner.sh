@@ -29,9 +29,9 @@ echo "Configuring lotus miner..."
 run_task 06-configure-miner.sh
 
 echo "Configuring systemd..."
-run_task 11-systemd-unit-files.sh
+run_task 12-systemd-miner.sh
 
 echo "Cleaning up..."
-run_task 12-cleanup.sh
+run_task 14-cleanup.sh
 
 echo "Done!"
