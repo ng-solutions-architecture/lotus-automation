@@ -37,7 +37,7 @@ check_nvidia() {
 install_rust() {
   echo "Installing rust."
 
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   bash -c 'source "$HOME/.cargo/env"'
 }
 
