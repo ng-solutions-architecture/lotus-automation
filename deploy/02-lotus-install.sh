@@ -9,7 +9,8 @@ source ./variables > /dev/null 2>&1
 
 clone_lotus() {
   git clone https://github.com/filecoin-project/lotus.git
-  git checkout $LOTUS_VERSION
+  cd ${INSTALL_DIR}/lotus
+  git checkout ${LOTUS_VERSION}
 }
 
 set_build_flags() {
@@ -36,9 +37,9 @@ build_lotus() {
   export PATH=$PATH:/usr/local/go/bin
 
   clone_lotus
-  cd ${DIR}/lotus
   set_build_flags
 
+  cd ${DIR}/lotus
   if [ $USE_CALIBNET == "y" ];
     then make clean calibnet
     else 
