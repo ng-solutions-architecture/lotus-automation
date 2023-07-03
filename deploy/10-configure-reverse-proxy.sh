@@ -49,7 +49,7 @@ server {\n
 }\n
     " | sudo tee /etc/nginx/sites-enabled/ipfs > /dev/null
     else 
-        sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ipfs.key -out /etc/ssl/certs/ipfs.crt
+        sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ipfs.key -out /etc/ssl/certs/ipfs.crt -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=example.com"
         printf "
 # ipfs gateway config\n
 include /etc/nginx/ipfs-gateway.conf.d/ipfs-gateway.conf;\n
