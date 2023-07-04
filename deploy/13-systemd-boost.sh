@@ -70,9 +70,6 @@ start_services () {
     sudo systemctl start booster-http
 }
 
-enable_services () {
-}
-
 create_env_file
 install_systemd_boostd
 
@@ -83,4 +80,3 @@ fi
 reload_systemd
 stop_services
 start_services
-#enable_services

@@ -9,7 +9,7 @@ source ./variables > /dev/null 2>&1
 
 download_snapshot() {
   DIR=$1
-  rm ${DIR}/latest-lotus-snapshot.zst*
+  #rm ${DIR}/latest-lotus-snapshot.zst*
   echo "Downloading latest chain snapshot"
 
   if [ $USE_CALIBNET == "y" ];
