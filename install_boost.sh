@@ -26,7 +26,7 @@ echo "Installing lotus..."
 run_task 02-lotus-install.sh
 
 echo "Installing Boost..."
-run_task 07-install-boost.sh
+run_task 07a-install-boost-standalone.sh
 
 echo "Initializing Boost..."
 run_task 08-initialize-boost.sh
