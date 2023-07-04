@@ -89,9 +89,10 @@ CERT_KEY=
 # These variables are only required in case you will install components on separate machines (like lotus-worker).
 # Provide the FULLNODE and MINER API info from the already installed lotus-daemon and lotus-miner instances:
 
-#Uncomment and set the below API_INFO variables:
+#Uncomment and set the below variables for installing Boost or Lotus-Miner separately:
 #FULLNODE_API_INFO=
 #MINER_API_INFO=
+#OWNER_WALLET_ADDRESS=
 
 FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1 # when GPU is available
 FIL_PROOFS_USE_GPU_TREE_BUILDER=1   # when GPU is available

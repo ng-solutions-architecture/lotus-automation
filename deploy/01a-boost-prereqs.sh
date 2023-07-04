@@ -50,9 +50,15 @@ set_limits() {
   sudo sysctl -p
 }
 
+set_owner_wallet() {
+  echo "export OWNER_WALLET=${OWNER_WALLET_ADDRESS}" >> $HOME/.bashrc
+  export OWNER_WALLET=${OWNER_WALLET_ADDRESS}
+}
+
 # Install prerequisites
 create_dirs ${INSTALL_DIR} ${LOG_DIR}
 install_software_deps
 install_rust
 install_go ${GO_VERSION}
 set_limits
+set_owner_wallet
