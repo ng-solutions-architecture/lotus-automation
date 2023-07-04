@@ -30,7 +30,7 @@ set_boost_vars() {
   echo "export FULLNODE_API_INFO=${FULLNODE_API_INFO}" >> $HOME/.bashrc
   export FULLNODE_API_INFO=${FULLNODE_API_INFO}
   echo "export MINER_API_INFO=${MINER_API_INFO}" >> $HOME/.bashrc
-  export MINER_API_INFO=${MINDER_API_INFO}
+  export MINER_API_INFO=${MINER_API_INFO}
   }
 
 send_funds_to_boost() {
