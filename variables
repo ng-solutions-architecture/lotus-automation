@@ -9,7 +9,7 @@ NODEJS_VERSION="v18.16.0"
 
 # Build Lotus for Calibration testnet instead of mainnet: y / n
 # if "y", use the Faucet to give your wallets test FIL: https://faucet.calibration.fildev.network/
-USE_CALIBNET="n"
+USE_CALIBNET="y"
 
 # Choose the temporary installation directory for Lotus
 INSTALL_DIR="$HOME"
