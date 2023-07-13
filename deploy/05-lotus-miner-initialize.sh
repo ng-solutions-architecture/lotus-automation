@@ -7,6 +7,13 @@ shopt -s nullglob
 source $HOME/.bashrc > /dev/null 2>&1
 source ./variables > /dev/null 2>&1
 
+create_cache_dirs() {
+  mkdir -p ${PARAM_CACHE}
+  mkdir -p ${PARENT_CACHE}
+  sudo chown -R $(whoami) ${PARAM_CACHE}
+  sudo chown -R $(whoami) ${PARENT_CACHE}
+}
+
 create_wallet() {
   DIR=$1
   
@@ -114,6 +121,7 @@ wait_for_miner(){
   sleep 5 
 }
 
+create_cache_dirs
 create_wallet ${INSTALL_DIR}
 transfer_funds
 wait_for_funds
