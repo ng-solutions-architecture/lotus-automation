@@ -55,6 +55,11 @@ set_owner_wallet() {
   export OWNER_WALLET=${OWNER_WALLET_ADDRESS}
 }
 
+set_fullnode_api_info() {
+  echo "export FULLNODE_API_INFO=${FULLNODE_API_INFO}" >> $HOME/.bashrc
+  export FULLNODE_API_INFO=${FULLNODE_API_INFO}
+}
+
 # Install prerequisites
 create_dirs ${INSTALL_DIR} ${LOG_DIR}
 install_software_deps
@@ -62,3 +67,4 @@ install_rust
 install_go ${GO_VERSION}
 set_limits
 set_owner_wallet
+set_fullnode_api_info
