@@ -1,4 +1,4 @@
-# lotus-automation
+# SP Stack Automation
 
 ## What this automation is planning to do
 
