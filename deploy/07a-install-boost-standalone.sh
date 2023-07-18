@@ -27,8 +27,6 @@ set_boost_vars() {
   echo "export BOOST_BITSWAP_REP=${BOOST_BITSWAP}" >> $HOME/.bashrc
   export BOOST_PATH=${BOOST_DIR}
   echo "export BOOST_PATH=${BOOST_DIR}" >> $HOME/.bashrc
-  echo "export FULLNODE_API_INFO=${FULLNODE_API_INFO}" >> $HOME/.bashrc
-  export FULLNODE_API_INFO=${FULLNODE_API_INFO}
   echo "export MINER_API_INFO=${MINER_API_INFO}" >> $HOME/.bashrc
   export MINER_API_INFO=${MINER_API_INFO}
   }

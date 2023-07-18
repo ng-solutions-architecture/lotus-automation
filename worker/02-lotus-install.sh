@@ -9,6 +9,7 @@ source ./variables > /dev/null 2>&1
 
 clone_lotus() {
   git clone https://github.com/filecoin-project/lotus.git
+  cd ${INSTALL_DIR}/lotus
   git checkout $LOTUS_VERSION
 }
 
@@ -31,16 +32,19 @@ set_build_flags() {
   export FFI_USE_MULTICORE_SDR=$FFI_USE_MULTICORE_SDR
   echo "export FFI_USE_MULTICORE_SDR=$FFI_USE_MULTICORE_SDR" >> $HOME/.bashrc
   export RUST_GPU_TOOLS_CUSTOM_GPU="${GPU_TYPE}:${CUDA_CORES}"
-  echo 'RUST_GPU_TOOLS_CUSTOM_GPU="${GPU_TYPE}:${CUDA_CORES}"' >> $HOME/.bashrc
-  echo LOTUS_WORKER_NAME=$LOTUS_WORKER_NAME"
-  export echo LOTUS_WORKER_NAME=$WORKER_NAME" >> $HOME/.bashrc
+  echo "export RUST_GPU_TOOLS_CUSTOM_GPU=\"${GPU_TYPE}:${CUDA_CORES}\"" >> $HOME/.bashrc
+
+  export LOTUS_WORKER_NAME=$LOTUS_WORKER_NAME
+  echo "export LOTUS_WORKER_NAME=$WORKER_NAME" >> $HOME/.bashrc
   echo "export FULLNODE_API_INFO=$FULLNODE_API_INFO" >> $HOME/.bashrc
+  echo "export MINER_API_INFO=$MINER_API_INFO" >> $HOME/.bashrc
 
 }
 
 build_lotus() {
   DIR=$1
   cd ${DIR}
+    export PATH=$PATH:/usr/local/go/bin
 
   clone_lotus
   cd ${DIR}/lotus
