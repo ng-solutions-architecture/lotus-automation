@@ -31,6 +31,9 @@ set_boost_api () {
     ENV_BOOST_API_INFO=$(boostd auth api-info --perm=admin)
     export BOOST_API_INFO=$(echo $ENV_BOOST_API_INFO | awk '{split($0,a,"="); print a[2]}')
     echo "export BOOST_API_INFO=$(echo $ENV_BOOST_API_INFO | awk '{split($0,a,"="); print a[2]}')" >> $HOME/.bashrc
+    echo "Boost API env is: $ENV_BOOST_API_INFO"
+    echo "Boost API is:$BOOST_API_INFO"
+    read -n 1 -s -r -p "Press any key to continue
 }
 
 set_extra_boost_vars
