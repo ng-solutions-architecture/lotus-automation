@@ -27,16 +27,13 @@ run_boost() {
     sleep 10s
 }
 
-announce_boost() {
-  IP=$1
-  PORT=$2
-  PEERID=$(boostd net id)
-  
-  lotus-miner actor set-addrs /ip4/${IP}/tcp/${PORT}
-  lotus-miner actor set-peer-id ${PEERID}
+set_boost_api () {
+    ENV_BOOST_API_INFO=$(boostd auth api-info --perm=admin)
+    export BOOST_API_INFO=$(echo $ENV_BOOST_API_INFO | awk '{split($0,a,"="); print a[2]}')
+    echo "export BOOST_API_INFO=$(echo $ENV_BOOST_API_INFO | awk '{split($0,a,"="); print a[2]}')" >> $HOME/.bashrc
 }
 
 set_extra_boost_vars
 initialize_boost
 run_boost ${LOG_DIR}
-announce_boost ${BOOST_PUB_IP} ${BOOST_P2P_PORT}
+set_boost_api
