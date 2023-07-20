@@ -20,17 +20,6 @@ create_boost_wallets() {
   echo "export COLLAT_WALLET=${COLLATERAL_WALLET}" >> $HOME/.bashrc
 }
 
-set_boost_vars() {
-  export BOOST_CLIENT_REPO=${BOOST_CLIENT}
-  echo "export BOOST_CLIENT_REPO=${BOOST_CLIENT}" >> $HOME/.bashrc
-  export BOOST_BITSWAP_REP=${BOOST_BITSWAP}
-  echo "export BOOST_BITSWAP_REP=${BOOST_BITSWAP}" >> $HOME/.bashrc
-  export BOOST_PATH=${BOOST_DIR}
-  echo "export BOOST_PATH=${BOOST_DIR}" >> $HOME/.bashrc
-  echo "export MINER_API_INFO=${MINER_API_INFO}" >> $HOME/.bashrc
-  export MINER_API_INFO=${MINER_API_INFO}
-  }
-
 send_funds_to_boost() {
   lotus send --from ${OWNER_WALLET} ${PUBLISH_STORAGE_DEALS_WALLET} 0.2
   lotus send --from ${OWNER_WALLET} ${COLLAT_WALLET} 0.2
@@ -75,7 +64,6 @@ build_boost() {
 }
 
 create_boost_wallets ${INSTALL_DIR}
-set_boost_vars
 send_funds_to_boost
 set_boost_control_wallet
 install_node ${INSTALL_DIR} 

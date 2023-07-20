@@ -55,9 +55,17 @@ set_owner_wallet() {
   export OWNER_WALLET=${OWNER_WALLET_ADDRESS}
 }
 
-set_fullnode_api_info() {
+set_boost_vars() {
   echo "export FULLNODE_API_INFO=${FULLNODE_API_INFO}" >> $HOME/.bashrc
   export FULLNODE_API_INFO=${FULLNODE_API_INFO}
+   export BOOST_CLIENT_REPO=${BOOST_CLIENT}
+  echo "export BOOST_CLIENT_REPO=${BOOST_CLIENT}" >> $HOME/.bashrc
+  export BOOST_BITSWAP_REP=${BOOST_BITSWAP}
+  echo "export BOOST_BITSWAP_REP=${BOOST_BITSWAP}" >> $HOME/.bashrc
+  export BOOST_PATH=${BOOST_DIR}
+  echo "export BOOST_PATH=${BOOST_DIR}" >> $HOME/.bashrc
+  echo "export MINER_API_INFO=${MINER_API_INFO}" >> $HOME/.bashrc
+  export MINER_API_INFO=${MINER_API_INFO}
 }
 
 # Install prerequisites
@@ -67,4 +75,4 @@ install_rust
 install_go ${GO_VERSION}
 set_limits
 set_owner_wallet
-set_fullnode_api_info
+set_boost_vars
